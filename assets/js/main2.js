@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </div>
 
                     <a
-                        href="single-restaurant.html?id=${restaurant.id}"
+                        href="single-restaurant.html?id=${restaurant._id}"
                         class="btn btn-primary">
 
                         View Details
@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </div>
 
                     <a
-                        href="single-restaurant.html?id=${restaurant.id}"
+                        href="single-restaurant.html?id=${restaurant._id}"
                         class="restaurant-btn">
 
                         View Restaurant →
