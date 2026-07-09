@@ -1,0 +1,336 @@
+/*==================================================
+FOODCHAIN ADMIN LOGIN
+==================================================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #ff6b00
+    );
+
+    background-size:300% 300%;
+
+    animation:gradientMove 12s ease infinite;
+
+}
+
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+.login-container{
+
+    width:100%;
+
+    padding:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:100%;
+
+    max-width:430px;
+
+    padding:45px 35px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+}
+
+/*==================================================
+LOGIN LOGO
+==================================================*/
+
+.login-logo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.login-logo img{
+
+    width:90px;
+
+    margin:0 auto 18px;
+
+    display:block;
+
+    animation:floatLogo 3s ease-in-out infinite;
+
+}
+
+@keyframes floatLogo{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.login-logo h2{
+
+    color:#ffffff;
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+.login-logo p{
+
+    color:rgba(255,255,255,.85);
+
+    font-size:.95rem;
+
+}
+
+/*==================================================
+INPUTS
+==================================================*/
+
+.input-box{
+
+    position:relative;
+
+    margin-bottom:22px;
+
+}
+
+.input-box i{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#ff6b00;
+
+    font-size:1.1rem;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 20px 0 52px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.95);
+
+    font-size:1rem;
+
+    transition:.3s;
+
+}
+
+.input-box input:focus{
+
+    box-shadow:0 0 0 3px rgba(255,107,0,.35);
+
+}
+
+/*==================================================
+LOGIN BUTTON
+==================================================*/
+
+.login-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #ff6b00,
+        #ff944d
+    );
+
+    color:#ffffff;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(255,107,0,.4);
+
+}
+
+/*==================================================
+PAGE LOAD ANIMATION
+==================================================*/
+
+.login-card{
+
+    animation:fadeIn .8s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+
+@media (max-width:768px){
+
+    .login-card{
+
+        padding:35px 25px;
+
+    }
+
+    .login-logo img{
+
+        width:75px;
+
+    }
+
+    .login-logo h2{
+
+        font-size:1.7rem;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .login-container{
+
+        padding:18px;
+
+    }
+
+    .login-card{
+
+        border-radius:22px;
+
+        padding:30px 20px;
+
+    }
+
+    .input-box input{
+
+        height:54px;
+
+    }
+
+    .login-btn{
+
+        height:54px;
+
+    }
+
+}

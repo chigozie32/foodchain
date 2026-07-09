@@ -1,0 +1,574 @@
+/*==================================================
+FOODCHAIN ADMIN DASHBOARD
+==================================================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#f4f7fb;
+
+    color:#111827;
+
+}
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/*==================================================
+SIDEBAR
+==================================================*/
+
+.sidebar{
+
+    width:280px;
+
+    background:#111827;
+
+    color:#ffffff;
+
+    padding:30px 25px;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    height:100vh;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:45px;
+
+}
+
+.logo img{
+
+    width:55px;
+
+}
+
+.logo h2{
+
+    font-size:1.6rem;
+
+    font-weight:800;
+
+}
+
+a{
+text-decoration: none;
+color: #ffffff;
+}
+
+.sidebar-menu{
+
+    list-style:none;
+
+}
+
+.sidebar-menu li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    margin-bottom:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sidebar-menu li:hover{
+
+    background:#ff6b00;
+
+}
+
+.sidebar-menu li.active{
+
+    background:#ff6b00;
+
+}
+
+.sidebar-menu i{
+
+    font-size:1.15rem;
+
+    width:24px;
+
+}
+
+/*==================================================
+MAIN CONTENT
+==================================================*/
+
+.main-content{
+
+    flex:1;
+
+    margin-left:280px;
+
+}
+
+/*==================================================
+TOP BAR
+==================================================*/
+
+.topbar{
+
+    height:85px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+}
+
+.topbar h1{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:24px;
+
+}
+
+.topbar-right i{
+
+    font-size:1.3rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.topbar-right i:hover{
+
+    color:#ff6b00;
+
+}
+
+.topbar-right img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #ff6b00;
+
+}
+
+/*==================================================
+STATISTICS CARDS
+==================================================*/
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+    padding:35px;
+
+}
+
+.stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+}
+
+.stat-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#ff6b00,#ff944d);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#ffffff;
+
+    font-size:1.8rem;
+
+}
+
+.stat-info h2{
+
+    font-size:2rem;
+
+    color:#111827;
+
+    margin-bottom:6px;
+
+}
+
+.stat-info p{
+
+    color:#6b7280;
+
+    font-weight:500;
+
+}
+
+/*==================================================
+RECENT ACTIVITY
+==================================================*/
+
+.recent-activity{
+
+    margin:35px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+}
+
+.activity-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.activity-header h2{
+
+    font-size:1.6rem;
+
+    color:#111827;
+
+}
+
+.view-all{
+
+    background:#ff6b00;
+
+    color:#ffffff;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.view-all:hover{
+
+    background:#e55d00;
+
+}
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    text-align:left;
+
+    padding:18px;
+
+    background:#f8fafc;
+
+    color:#111827;
+
+}
+
+td{
+
+    padding:18px;
+
+    border-top:1px solid #eceff3;
+
+}
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+.pending{
+
+    background:#fff4e5;
+
+    color:#ff8c00;
+
+}
+
+.new{
+
+    background:#e8f4ff;
+
+    color:#0b72ff;
+
+}
+
+.success{
+
+    background:#e8fff0;
+
+    color:#1a9c43;
+
+}
+
+
+
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+
+@media(max-width:991px){
+
+.sidebar{
+
+    width:230px;
+
+}
+
+.main-content{
+
+    margin-left:230px;
+
+}
+
+.topbar{
+
+    padding:20px;
+
+}
+
+.stats{
+
+    padding:20px;
+
+}
+
+.recent-activity{
+
+    margin:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard{
+
+    display:block;
+
+}
+
+.sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    height:auto;
+
+}
+
+.main-content{
+
+    margin-left:0;
+
+}
+
+.topbar{
+
+    padding:18px 20px;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    height:auto;
+
+}
+
+.topbar h1{
+
+    font-size:1.6rem;
+
+}
+
+.topbar-right{
+
+    width:100%;
+
+    justify-content:flex-end;
+
+}
+
+.stats{
+
+    grid-template-columns:1fr;
+
+    padding:20px;
+
+}
+
+.recent-activity{
+
+    margin:20px;
+
+    padding:20px;
+
+}
+
+.activity-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+.view-all{
+
+    width:100%;
+
+}
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:700px;
+
+}
+
+}
+

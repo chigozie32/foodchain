@@ -1,0 +1,275 @@
+/*==========================================
+NEWSLETTER PAGE
+==========================================*/
+
+.page-intro{
+
+    background:#ffffff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.page-intro h2{
+
+    margin-bottom:10px;
+
+    color:#222;
+
+    font-size:28px;
+
+}
+
+.page-intro p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+.search-container{
+
+    margin-bottom:25px;
+
+}
+
+.search-container input{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.search-container input:focus{
+
+    border-color:#ff6b00;
+
+    box-shadow:0 0 8px rgba(255,107,0,.2);
+
+}
+
+.restaurant-list{
+
+    background:#ffffff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.list-header{
+
+    margin-bottom:20px;
+
+}
+
+.list-header h2{
+
+    color:#222;
+
+}
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#ff6b00;
+
+    color:#fff;
+
+}
+
+th{
+
+    padding:15px;
+
+    text-align:left;
+
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+tbody tr:hover{
+
+    background:#f8f8f8;
+
+}
+
+.action-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.action-buttons button{
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.view-btn{
+
+    background:#0d6efd;
+
+}
+
+.view-btn:hover{
+
+    background:#0b5ed7;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+}
+
+.delete-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+
+@media(max-width:991px){
+
+.page-intro{
+
+    padding:20px;
+
+}
+
+.restaurant-list{
+
+    padding:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.page-intro h2{
+
+    font-size:24px;
+
+}
+
+.page-intro p{
+
+    font-size:.95rem;
+
+}
+
+.search-container input{
+
+    font-size:15px;
+
+    padding:13px 16px;
+
+}
+
+.restaurant-list{
+
+    padding:18px;
+
+}
+
+.list-header{
+
+    margin-bottom:18px;
+
+}
+
+.list-header h2{
+
+    font-size:1.4rem;
+
+}
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:700px;
+
+}
+
+.action-buttons{
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+}
+
+.action-buttons button{
+
+    font-size:13px;
+
+    padding:7px 10px;
+
+}
+
+}
