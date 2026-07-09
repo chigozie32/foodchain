@@ -35,7 +35,7 @@ async function loadRestaurant() {
         restaurants = await response.json();
 
         currentRestaurant =
-        restaurants.find(item => item.id === restaurantId);
+restaurants.find(item => item._id === restaurantId);
 
         if (!currentRestaurant) {
 
@@ -207,7 +207,7 @@ function displayRelatedRestaurants() {
 
     const related = restaurants
         .filter(item =>
-            item.id !== currentRestaurant.id &&
+            item._id !== currentRestaurant._id &&
             item.category === currentRestaurant.category
         )
         .slice(0, 3);
@@ -282,7 +282,7 @@ function displayRelatedRestaurants() {
 
                 <a
 
-                href="single-restaurant.html?id=${item.id}"
+                href="single-restaurant.html?id=${item._id}"
 
                 class="restaurant-btn">
 
