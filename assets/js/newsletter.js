@@ -1,7 +1,6 @@
-/*==================================================
-FOODCHAIN
-NEWSLETTER JAVASCRIPT
-==================================================*/
+/*==========================================
+FOODCHAIN NEWSLETTER (Render + MongoDB)
+==========================================*/
 
 const newsletterForm = document.getElementById("newsletterForm");
 
@@ -9,79 +8,53 @@ if (newsletterForm) {
 
     const emailInput = document.getElementById("newsletterEmail");
 
-    // Restore saved email
-    const savedEmail = localStorage.getItem("newsletterEmail");
+    newsletterForm.addEventListener("submit", async (event) => {
 
-    if (savedEmail) {
-        emailInput.value = savedEmail;
-    }
+        event.preventDefault();
 
-    // Save while typing
-    emailInput.addEventListener("input", () => {
+        const email = emailInput.value.trim();
 
-        localStorage.setItem(
-            "newsletterEmail",
-            emailInput.value
-        );
+        if (!email) {
+            alert("Please enter your email.");
+            return;
+        }
 
-    });
+        try {
 
-    // Submit
-    // Submit
-newsletterForm.addEventListener("submit", async function (event) {
+            const response = await fetch(
+                "https://foodchain-api.onrender.com/newsletter",
+                {
+                    method: "POST",
 
-    event.preventDefault();
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-    const email = emailInput.value.trim();
+                    body: JSON.stringify({
+                        email
+                    })
+                }
+            );
 
-    if (email === "") {
+            const data = await response.json();
 
-        alert("Please enter your email address.");
-        return;
-
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-
-        alert("Please enter a valid email address.");
-        return;
-
-    }
-
-    try {
-
-        const response = await fetch(
-            "https://foodchain-api.onrender.com/newsletter",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email })
+            if (!response.ok) {
+                alert(data.message || "Could not subscribe.");
+                return;
             }
-        );
 
-        const data = await response.json();
-
-        alert(data.message);
-
-        if (data.success) {
-
-            localStorage.removeItem("newsletterEmail");
+            alert(data.message);
 
             newsletterForm.reset();
 
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Could not connect to the server.");
+
         }
 
-    } catch (error) {
+    });
 
-        console.error(error);
-
-        alert("Could not subscribe.");
-
-    }
-
-});
 }
