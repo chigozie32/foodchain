@@ -27,60 +27,61 @@ if (newsletterForm) {
     });
 
     // Submit
-    newsletterForm.addEventListener("submit", function (event) {
+    // Submit
+newsletterForm.addEventListener("submit", async function (event) {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        const email = emailInput.value.trim();
+    const email = emailInput.value.trim();
 
-        if (email === "") {
+    if (email === "") {
 
-            alert("Please enter your email address.");
+        alert("Please enter your email address.");
+        return;
 
-            return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+
+        alert("Please enter a valid email address.");
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+            "https://foodchain-api.onrender.com/newsletter",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            }
+        );
+
+        const data = await response.json();
+
+        alert(data.message);
+
+        if (data.success) {
+
+            localStorage.removeItem("newsletterEmail");
+
+            newsletterForm.reset();
 
         }
 
-        const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    } catch (error) {
 
-        if (!emailPattern.test(email)) {
+        console.error(error);
 
-            alert("Please enter a valid email address.");
+        alert("Could not subscribe.");
 
-            return;
+    }
 
-        }
-
-        // Save subscriber
-        let subscribers =
-            JSON.parse(localStorage.getItem("subscribers")) || [];
-
-        subscribers.push({
-
-            email: email,
-
-            date: new Date().toLocaleDateString()
-
-        });
-
-        localStorage.setItem(
-            "subscribers",
-            JSON.stringify(subscribers)
-        );
-
-        // Create notification
-        addNotification(
-            `New newsletter subscriber: ${email}`,
-            "newsletter.html"
-        );
-
-        // Remove saved email
-        localStorage.removeItem("newsletterEmail");
-
-        // Submit to FormSubmit
-        newsletterForm.submit();
-
-    });
-
+});
 }
