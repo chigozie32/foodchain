@@ -24,13 +24,13 @@ async function loadDashboard(){
 
         ] = await Promise.all([
 
-            fetch("http://localhost:3000/restaurants"),
+            fetch("https://foodchain-api.onrender.com/restaurants"),
 
-            fetch("http://localhost:3000/partnership"),
+            fetch("https://foodchain-api.onrender.com/partnership"),
 
-            fetch("http://localhost:3000/contact"),
+            fetch("https://foodchain-api.onrender.com/contact"),
 
-            fetch("http://localhost:3000/newsletter")
+            fetch("https://foodchain-api.onrender.com/newsletter")
 
         ]);
 

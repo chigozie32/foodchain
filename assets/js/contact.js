@@ -110,7 +110,7 @@ if (contactForm) {
         }
         
 
-        fetch("http://localhost:3000/contact", {
+        fetch("https://foodchain-api.onrender.com/contact", {
 
     method: "POST",
 

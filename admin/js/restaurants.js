@@ -123,7 +123,7 @@ restaurantForm.addEventListener("submit", function (e) {
 
                 if (editIndex === -1) {
 
-                    response = await fetch("http://localhost:3000/restaurants", {
+                    response = await fetch("https://foodchain-api.onrender.com/restaurants", {
 
                         method: "POST",
 
@@ -137,7 +137,7 @@ restaurantForm.addEventListener("submit", function (e) {
 
                 } else {
 
-                    response = await fetch(`http://localhost:3000/restaurants/${restaurants[editIndex]._id}`, {
+                    response = await fetch(`https://foodchain-api.onrender.com/restaurants/${restaurants[editIndex]._id}`, {
 
                         method: "PUT",
 
@@ -199,7 +199,7 @@ async function displayRestaurants(searchText = "") {
     try {
 
         const response =
-            await fetch("http://localhost:3000/restaurants");
+            await fetch("https://foodchain-api.onrender.com/restaurants");
 
         restaurants = await response.json();
 
@@ -288,7 +288,7 @@ async function deleteRestaurant(index){
 
     try{
 
-     const response = await fetch(`http://localhost:3000/restaurants/${restaurant._id}`, {
+     const response = await fetch(`https://foodchain-api.onrender.com/restaurants/${restaurant._id}`, {
                 method: "DELETE"
             }
         );
@@ -379,7 +379,7 @@ async function updateStats(){
     try{
 
         const response =
-        await fetch("http://localhost:3000/restaurants");
+        await fetch("https://foodchain-api.onrender.com/restaurants");
 
         const restaurants =
         await response.json();

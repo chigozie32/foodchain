@@ -30,7 +30,7 @@ async function loadRestaurant() {
     try {
 
         const response =
-        await fetch("http://localhost:3000/restaurants");
+        await fetch("https://foodchain-api.onrender.com/restaurants");
 
         restaurants = await response.json();
 

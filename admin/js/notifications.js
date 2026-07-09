@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/notifications";
+const API_URL = "https://foodchain-api.onrender.com/notifications";
 
 async function getNotifications() {
 

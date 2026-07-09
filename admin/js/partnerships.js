@@ -21,7 +21,7 @@ async function loadPartnershipRequests(){
     try{
 
         const response =
-        await fetch("http://localhost:3000/partnership");
+        await fetch("https://foodchain-api.onrender.com/partnership");
 
         partnershipRequests =
         await response.json();
@@ -164,7 +164,7 @@ async function approveRequest(id){
     try{
 
         const response = await fetch(
-            `http://localhost:3000/partnership/${id}/approve`,
+            `https://foodchain-api.onrender.com/partnership/${id}/approve`,
             {
                 method:"PUT"
             }
@@ -195,7 +195,7 @@ async function rejectRequest(id){
     try{
 
         const response = await fetch(
-            `http://localhost:3000/partnership/${id}/reject`,
+            `https://foodchain-api.onrender.com/partnership/${id}/reject`,
             {
                 method:"PUT"
             }
@@ -230,7 +230,7 @@ async function deleteRequest(id){
     try{
 
         const response = await fetch(
-            `http://localhost:3000/partnership/${id}`,
+            `https://foodchain-api.onrender.com/partnership/${id}`,
             {
                 method:"DELETE"
             }

@@ -31,7 +31,7 @@ async function loadBlog() {
 
         // Load the selected blog
         const response = await fetch(
-            `http://localhost:3000/blogs/${blogId}`
+            `https://foodchain-api.onrender.com/blogs/${blogId}`
         );
 
         if (!response.ok) {
@@ -127,7 +127,7 @@ async function loadRelatedBlogs(blog) {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/blogs"
+            "https://foodchain-api.onrender.com/blogs"
         );
 
         const blogs = await response.json();

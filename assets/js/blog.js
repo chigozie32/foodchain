@@ -21,7 +21,7 @@ async function loadBlogs() {
 
     try {
 
-        const response = await fetch("http://localhost:3000/blogs");
+        const response = await fetch("https://foodchain-api.onrender.com/blogs");
 
         blogs = await response.json();
 

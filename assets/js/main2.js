@@ -144,7 +144,7 @@ if (newsletterForm) {
 
 
 
-        fetch("http://localhost:3000/newsletter", {
+        fetch("https://foodchain-api.onrender.com/newsletter", {
 
     method: "POST",
 
@@ -212,7 +212,7 @@ async function loadRestaurants() {
     try {
 
         const response =
-            await fetch("http://localhost:3000/restaurants");
+            await fetch("https://foodchain-api.onrender.com/restaurants");
 
         restaurants = await response.json();
 
@@ -493,7 +493,7 @@ inputs.forEach(input => {
 
         };
 
-fetch("http://localhost:3000/partnership", {
+fetch("https://foodchain-api.onrender.com/partnership", {
 
     method: "POST",
 
@@ -557,7 +557,7 @@ async function loadRestaurants() {
     try {
 
         const response =
-            await fetch("http://localhost:3000/restaurants");
+            await fetch("https://foodchain-api.onrender.com/restaurants");
 
         restaurants = await response.json();
 

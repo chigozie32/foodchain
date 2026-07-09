@@ -99,7 +99,7 @@ if (blogForm) {
 
                 response = await fetch(
 
-                    `http://localhost:3000/blogs/${editId}`,
+                    `https://foodchain-api.onrender.com/blogs/${editId}`,
 
                     {
 
@@ -121,7 +121,7 @@ if (blogForm) {
 
                 response = await fetch(
 
-                    "http://localhost:3000/blogs",
+                    "https://foodchain-api.onrender.com/blogs",
 
                     {
 
@@ -184,7 +184,7 @@ async function displayBlogs(searchText = "") {
 
     try {
 
-        const response = await fetch("http://localhost:3000/blogs");
+        const response = await fetch("https://foodchain-api.onrender.com/blogs");
 
         blogs = await response.json();
 
@@ -308,7 +308,7 @@ async function deleteBlog(id) {
 
         const response = await fetch(
 
-            `http://localhost:3000/blogs/${id}`,
+            `https://foodchain-api.onrender.com/blogs/${id}`,
 
             {
 
@@ -354,7 +354,7 @@ async function toggleFeatured(id) {
 
             response = await fetch(
 
-                `http://localhost:3000/blogs/${id}/unfeature`,
+                `https://foodchain-api.onrender.com/blogs/${id}/unfeature`,
 
                 {
 
@@ -368,7 +368,7 @@ async function toggleFeatured(id) {
 
             response = await fetch(
 
-                `http://localhost:3000/blogs/${id}/feature`,
+                `https://foodchain-api.onrender.com/blogs/${id}/feature`,
 
                 {
 
@@ -405,7 +405,7 @@ async function updateStats() {
     try {
 
         const response =
-            await fetch("http://localhost:3000/blogs");
+            await fetch("https://foodchain-api.onrender.com/blogs");
 
         const blogs =
             await response.json();

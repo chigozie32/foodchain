@@ -3,7 +3,7 @@ FOODCHAIN NEWSLETTER SUBSCRIBERS
 MONGODB VERSION
 ==========================================*/
 
-const API_URL = "http://localhost:3000/newsletter";
+const API_URL = "https://foodchain-api.onrender.com/newsletter";
 
 let subscribers = [];
 

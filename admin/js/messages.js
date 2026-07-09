@@ -4,7 +4,7 @@ CONTACT MESSAGES
 MONGODB VERSION
 ==========================================*/
 
-const API_URL = "http://localhost:3000/contact";
+const API_URL = "https://foodchain-api.onrender.com/contact";
 
 let messages = [];
 

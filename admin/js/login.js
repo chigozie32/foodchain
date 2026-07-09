@@ -23,7 +23,7 @@ if (loginForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:3000/admin/login",
+                "https://foodchain-api.onrender.com/admin/login",
                 {
                     method: "POST",
 

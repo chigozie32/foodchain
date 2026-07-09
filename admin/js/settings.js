@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             const response =
-                await fetch("http://localhost:3000/admin/profile");
+                await fetch("https://foodchain-api.onrender.com/admin/profile");
 
             const admin =
                 await response.json();
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const profileResponse = await fetch(
 
-                "http://localhost:3000/admin/profile",
+                "https://foodchain-api.onrender.com/admin/profile",
 
                 {
 
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const passwordResponse = await fetch(
 
-                    "http://localhost:3000/admin/password",
+                    "https://foodchain-api.onrender.com/admin/password",
 
                     {
 
