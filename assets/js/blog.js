@@ -129,13 +129,13 @@ function displayFeaturedBlog() {
 DISPLAY ALL BLOGS
 =========================================*/
 
-function displayBlogs() {
+function displayBlogs(blogList = blogs) {
 
     if (!blogContainer) return;
 
     blogContainer.innerHTML = "";
 
-    if (blogs.length === 0) {
+    if (blogList.length === 0) {
 
         blogContainer.innerHTML = `
             <h2 style="text-align:center;padding:50px;">
@@ -144,21 +144,18 @@ function displayBlogs() {
         `;
 
         return;
-
     }
 
-    blogs.forEach(blog => {
+    blogList.forEach(blog => {
 
         blogContainer.innerHTML += `
 
         <article class="article-card">
 
             <div class="article-image">
-
                 <img
                     src="${blog.image || 'assets/images/image-placeholder.png'}"
                     alt="${blog.title}">
-
             </div>
 
             <div class="article-content">
@@ -191,8 +188,9 @@ function displayBlogs() {
 
     });
 
-}
+    animateBlogCards();
 
+}
 
 /*=========================================
 SEARCH BLOGS
@@ -260,69 +258,6 @@ if (categoryButtons.length > 0) {
     });
 
 }
-
-
-
-/*=========================================
-CATEGORY FILTER
-=========================================*/
-
-// const categoryButtons =
-// document.querySelectorAll(".blog-category-btn");
-
-// if (categoryButtons.length > 0) {
-
-//     categoryButtons.forEach(button => {
-
-//         button.addEventListener("click", () => {
-
-//             const category = button.dataset.category;
-
-//             if (category === "all") {
-
-//                 displayBlogs(blogs);
-
-//                 return;
-
-//             }
-
-//             const filtered = blogs.filter(blog =>
-//                 blog.category === category
-//             );
-
-//             displayBlogs(filtered);
-
-//         });
-
-//     });
-
-// }
-
-/*=========================================
-SEARCH
-=========================================*/
-
-// if (blogSearch) {
-
-//     blogSearch.addEventListener("input", function () {
-
-//         const keyword = this.value.toLowerCase().trim();
-
-//         const filtered = blogs.filter(blog =>
-
-//             blog.title.toLowerCase().includes(keyword) ||
-
-//             blog.description.toLowerCase().includes(keyword) ||
-
-//             blog.category.toLowerCase().includes(keyword)
-
-//         );
-
-//         displayBlogs(filtered);
-
-//     });
-
-// }
 
 /*=========================================
 ANIMATION

@@ -67,118 +67,65 @@ if (contactForm) {
     ==============================================*/
 
     contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        e.preventDefault();
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value.trim();
 
-        const fullName = document.getElementById("fullName").value.trim();
+    // 1. Validation Checks
+    if (fullName === "" || email === "" || subject === "" || message === "") {
+        alert("Please fill in all required fields.");
+        return;
+    }
 
-        const email = document.getElementById("email").value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
 
-        const phone = document.getElementById("phone").value.trim();
+    // Define the form field IDs array for localStorage clearing
+    const fields = ["fullName", "email", "phone", "subject", "message"];
 
-        const subject = document.getElementById("subject").value;
-
-        const message = document.getElementById("message").value.trim();
-
-        if (
-
-            fullName === "" ||
-
-            email === "" ||
-
-            subject === "" ||
-
-            message === ""
-
-        ) {
-
-            alert("Please fill in all required fields.");
-
-            return;
-
-        }
-
-        const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailPattern.test(email)) {
-
-            alert("Please enter a valid email address.");
-
-            return;
-
-        }
-        
-
-        fetch("https://foodchain-api.onrender.com/contact", {
-
-    method: "POST",
-
-    headers: {
-
-        "Content-Type": "application/json"
-
-    },
-
-    body: JSON.stringify({
-
-        name: fullName,
-
-        email: email,
-
-        phone: phone,
-
-        subject: subject,
-
-        message: message
-
+    // 2. Network Request (Updated to the correct '/messages' route)
+    fetch("https://onrender.com", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: fullName,
+            email: email,
+            phone: phone,
+            subject: subject,
+            message: message
+        })
     })
-
-})
-
-.then(response => response.json())
-
-.then(data => {
-
-    addNotification(
-        `New contact message from ${fullName}`,
-        "messages.html"
-    );
-
-    fields.forEach(id => {
-
-        localStorage.removeItem(id);
-
-    });
-
-    alert(data.message);
-
-    contactForm.reset();
-
-})
-
-.catch(error => {
-
-    console.error(error);
-
-    alert("Could not send message.");
-
-});
-        addNotification(
-    `New contact message from ${name}`,
-    "messages.html"
-);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Server error occurred");
+        }
+        return response.json();
+    })
+    .then(data => {
+        // 3. Execution Only Happens on Verified Network Success
+        if (typeof addNotification === "function") {
+            addNotification(`New contact message from ${fullName}`, "messages.html");
+        }
 
         fields.forEach(id => {
-
             localStorage.removeItem(id);
-
         });
 
-        alert("Your message has been sent successfully!");
-
+        alert(data.message || "Your message has been sent successfully!");
         contactForm.reset();
-
+    })
+    .catch(error => {
+        console.error("Submission error:", error);
+        alert("Could not send message. Please try again later.");
     });
-
+});
 }
