@@ -3,12 +3,9 @@
   PART 1 - MOBILE MENU
 ==================================================*/
 
-// Select elements
-// Select elements
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".navigation");
 
-// Toggle menu on click
 if (menuButton && navigation) {
 
     menuButton.addEventListener("click", () => {
@@ -18,17 +15,15 @@ if (menuButton && navigation) {
     });
 
 }
+
 /*==================================================
-  FOODCHAIN JAVASCRIPT
   PART 2 - SCROLL ANIMATION
 ==================================================*/
 
-// Select all elements with animation classes
 const animatedElements = document.querySelectorAll(
-  ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
+    ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
 );
 
-// Function to check scroll position
 function handleScrollAnimation() {
 
     const windowHeight = window.innerHeight;
@@ -37,9 +32,7 @@ function handleScrollAnimation() {
 
         const elementTop = el.getBoundingClientRect().top;
 
-        const triggerPoint = 120;
-
-        if (elementTop < windowHeight - triggerPoint) {
+        if (elementTop < windowHeight - 120) {
 
             el.classList.add("active");
 
@@ -49,44 +42,30 @@ function handleScrollAnimation() {
 
 }
 
-// Run on scroll
 window.addEventListener("scroll", handleScrollAnimation);
-
-// Run once on load (important)
 window.addEventListener("load", handleScrollAnimation);
 
 /*==================================================
-  PART 3 - STICKY HEADER SCROLL EFFECT
+  PART 3 - STICKY HEADER
 ==================================================*/
+
 const header = document.querySelector(".header");
 
 if (header) {
 
     window.addEventListener("scroll", () => {
 
-        if (window.scrollY > 50) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
+        header.classList.toggle("scrolled", window.scrollY > 50);
 
     });
 
 }
 
-
 /*==================================================
-  PART 4 - ACTIVE NAVIGATION ON SCROLL
+  PART 4 - ACTIVE NAVIGATION
 ==================================================*/
 
-// Get all sections that have an ID
 const sections = document.querySelectorAll("section[id]");
-
-// Get all nav links
 const navLinks = document.querySelectorAll(".navigation a");
 
 window.addEventListener("scroll", () => {
@@ -96,10 +75,11 @@ window.addEventListener("scroll", () => {
     sections.forEach(section => {
 
         const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.clientHeight;
 
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
+        if (window.pageYOffset >= sectionTop) {
+
+            current = section.id;
+
         }
 
     });
@@ -109,259 +89,234 @@ window.addEventListener("scroll", () => {
         link.classList.remove("active");
 
         if (link.getAttribute("href") === "#" + current) {
+
             link.classList.add("active");
+
         }
 
     });
 
 });
 
-/*==========================================
-NEWSLETTER
-==========================================*/
+/*==================================================
+  NEWSLETTER
+==================================================*/
 
 const newsletterForm = document.getElementById("newsletterForm");
 
 if (newsletterForm) {
 
-    newsletterForm.addEventListener("submit", function (e) {
+    newsletterForm.addEventListener("submit", async (e) => {
 
         e.preventDefault();
 
         const email = document.getElementById("newsletterEmail").value;
 
-        let subscribers =
-            JSON.parse(localStorage.getItem("subscribers")) || [];
+        try {
 
-      
-        if (subscribers.some(sub => sub.email === email)) {
+            const response = await fetch("https://foodchain-api.onrender.com/newsletter", {
 
-            alert("This email is already subscribed!");
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({ email })
+
+            });
+
+            const data = await response.json();
+
+            if (typeof addNotification === "function") {
+
+                addNotification(
+                    `New newsletter subscriber: ${email}`,
+                    "newsletter.html"
+                );
+
+            }
+
+            alert(data.message);
+
+            newsletterForm.reset();
+
+        } catch (err) {
+
+            console.error(err);
+
+            alert("Could not connect to the server.");
+
+        }
+
+    });
+
+}
+
+/*==================================================
+  LOAD RESTAURANTS
+==================================================*/
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const restaurantsGrid =
+        document.getElementById("restaurantsGrid");
+
+    if (!restaurantsGrid) return;
+
+    let restaurants = [];
+
+    async function loadRestaurants() {
+
+        try {
+
+            const response =
+                await fetch("https://foodchain-api.onrender.com/restaurants");
+
+            restaurants = await response.json();
+
+            displayRestaurants(restaurants);
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            restaurantsGrid.innerHTML = `
+
+                <div class="empty-restaurants">
+
+                    <h2>Could not load restaurants.</h2>
+
+                    <p>Please check your server.</p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+    function displayRestaurants(list) {
+
+        restaurantsGrid.innerHTML = "";
+
+        if (!list.length) {
+
+            restaurantsGrid.innerHTML = `
+
+                <div class="empty-restaurants">
+
+                    <h2>No restaurants available.</h2>
+
+                </div>
+
+            `;
 
             return;
 
         }
 
+        list.forEach((restaurant) => {
 
+            const card = document.createElement("article");
 
-        fetch("https://foodchain-api.onrender.com/newsletter", {
+            card.className = "restaurant-card";
 
-    method: "POST",
+            card.innerHTML = `
 
-    headers: {
+                <img
+                    src="${restaurant.coverImage || "assets/images/logo.png"}"
+                    alt="${restaurant.name}">
 
-        "Content-Type": "application/json"
+                <div class="restaurant-content">
 
-    },
+                    <span class="restaurant-category">
 
-    body: JSON.stringify({
+                        ${restaurant.category}
 
-        email: email
+                    </span>
 
-    })
+                    <h3>${restaurant.name}</h3>
 
-})
-.then(response => response.json())
-.then(data => {
+                    <p>${restaurant.description}</p>
 
-    console.log(data);
+                    <div class="restaurant-meta">
 
-    alert(data.message);
+                        <span>⭐ ${restaurant.rating}</span>
 
-    newsletterForm.reset();
+                        <span>${restaurant.deliveryTime}</span>
 
-})
-.catch(error => {
+                    </div>
 
-    console.error(error);
+                    <a
+                        href="single-restaurant.html?id=${restaurant.id}"
+                        class="btn btn-primary">
 
-    alert("Could not connect to the server.");
+                        View Details
+
+                    </a>
+
+                </div>
+
+            `;
+
+            restaurantsGrid.appendChild(card);
+
+        });
+
+    }
+
+    const searchInput =
+        document.getElementById("restaurantSearch");
+
+    const categoryFilter =
+        document.getElementById("categoryFilter");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+    function filterRestaurants() {
+
+        const keyword =
+            searchInput.value.toLowerCase().trim();
+
+        const category =
+            categoryFilter.value;
+
+        const filtered = restaurants.filter((restaurant) => {
+
+            const matchesName =
+                restaurant.name.toLowerCase().includes(keyword);
+
+            const matchesCategory =
+                category === "All" ||
+                restaurant.category === category;
+
+            return matchesName && matchesCategory;
+
+        });
+
+        displayRestaurants(filtered);
+
+    }
+
+    if (searchButton)
+        searchButton.addEventListener("click", filterRestaurants);
+
+    if (searchInput)
+        searchInput.addEventListener("input", filterRestaurants);
+
+    if (categoryFilter)
+        categoryFilter.addEventListener("change", filterRestaurants);
+
+    await loadRestaurants();
 
 });
-
-        // Create admin notification
-if (typeof addNotification === "function") {
-    addNotification(
-        `New newsletter subscriber: ${email}`,
-        "newsletter.html"
-    );
-}
-
-        alert("Thank you for subscribing!");
-
-        newsletterForm.reset();
-
-    });
-
-}
-
-/*==========================================
-LOAD RESTAURANTS FROM ADMIN
-==========================================*/
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const restaurantsGrid = document.getElementById("restaurantsGrid");
-
-    if (!restaurantsGrid) return;
-
-let restaurants = [];
-
-async function loadRestaurants() {
-
-    try {
-
-        const response =
-            await fetch("https://foodchain-api.onrender.com/restaurants");
-
-        restaurants = await response.json();
-
-        displayRestaurants(restaurants);
-
-    } catch (error) {
-
-        console.error(error);
-
-        restaurantsGrid.innerHTML = `
-            <div class="empty-restaurants">
-                <h2>Could not load restaurants.</h2>
-            </div>
-        `;
-
-    }
-
-}
-
-    restaurantsGrid.innerHTML = "";
-
-    if (restaurants.length === 0) {
-
-        restaurantsGrid.innerHTML = `
-            <div class="empty-restaurants">
-                <h2>No restaurants available.</h2>
-                <p>Restaurants added from the Admin Portal will appear here.</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    function displayRestaurants(filteredRestaurants){
-
-    restaurantsGrid.innerHTML = "";
-
-    if(filteredRestaurants.length === 0){
-
-        restaurantsGrid.innerHTML = `
-            <div class="empty-restaurants">
-                <h2>No restaurants found.</h2>
-            </div>
-        `;
-
-        return;
-    }
-
-    filteredRestaurants.forEach((restaurant)=>{
-
-        const card = document.createElement("article");
-
-        card.className = "restaurant-card";
-
-        card.innerHTML = `
-
-        <img
-        src="${restaurant.coverImage || "assets/images/logo.png"}"
-        alt="${restaurant.name}">
-
-        <div class="restaurant-content">
-
-            <span class="restaurant-category">
-
-                ${restaurant.category}
-
-            </span>
-
-            <h3>${restaurant.name}</h3>
-
-            <p>${restaurant.description}</p>
-
-            <div class="restaurant-meta">
-
-                <span>⭐ ${restaurant.rating}</span>
-
-                <span>${restaurant.deliveryTime}</span>
-
-            </div>
-
-            <a
-            href="single-restaurant.html?id=${restaurant.id}"
-            class="btn btn-primary">
-
-            View Details
-
-            </a>
-
-        </div>
-
-        `;
-
-        restaurantsGrid.appendChild(card);
-
-    });
-
-}
-
-displayRestaurants(restaurants);
-
-
-/*==========================================
-SEARCH & FILTER
-==========================================*/
-
-const searchInput =
-document.getElementById("restaurantSearch");
-
-const categoryFilter =
-document.getElementById("categoryFilter");
-
-const searchButton =
-document.getElementById("searchButton");
-
-function filterRestaurants(){
-
-    const keyword =
-    searchInput.value.toLowerCase().trim();
-
-    const category =
-    categoryFilter.value;
-
-    const filtered =
-    restaurants.filter((restaurant)=>{
-
-        const matchesName =
-        restaurant.name.toLowerCase().includes(keyword);
-
-        const matchesCategory =
-        category === "All" ||
-        restaurant.category === category;
-
-        return matchesName && matchesCategory;
-
-    });
-
-    displayRestaurants(filtered);
-
-}
-
-searchButton.addEventListener("click", filterRestaurants);
-
-searchInput.addEventListener("input", filterRestaurants);
-
-categoryFilter.addEventListener("change", filterRestaurants);
-});
-
-
-
 
 /*==========================================
 PARTNER REGISTRATION
@@ -370,122 +325,80 @@ PARTNER REGISTRATION
 const partnerForm = document.getElementById("partnerForm");
 
 if (partnerForm) {
-    /*==========================================
-RESTORE SAVED DRAFT
-==========================================*/
 
-const savedDraft =
-JSON.parse(localStorage.getItem("partnerDraft"));
+    const draftInputs =
+        partnerForm.querySelectorAll("input, select, textarea");
 
-if (savedDraft) {
+    // Restore Draft
+    const draft =
+        JSON.parse(localStorage.getItem("partnerDraft"));
 
-    const inputs = partnerForm.querySelectorAll("input, select, textarea");
+    if (draft) {
 
-    inputs.forEach(field => {
+        draftInputs[0].value = draft.restaurant || "";
+        draftInputs[1].value = draft.owner || "";
+        draftInputs[2].value = draft.email || "";
+        draftInputs[3].value = draft.phone || "";
+        draftInputs[4].value = draft.category || "";
+        draftInputs[5].value = draft.city || "";
+        draftInputs[6].value = draft.description || "";
 
-        const key = field.placeholder || field.name || field.type;
+    }
 
-        if (savedDraft[key]) {
+    // Auto Save Draft
+    draftInputs.forEach(input => {
 
-            field.value = savedDraft[key];
-
-        }
+        input.addEventListener("input", savePartnerDraft);
+        input.addEventListener("change", savePartnerDraft);
 
     });
 
-}
+    function savePartnerDraft() {
 
+        const draft = {
 
+            restaurant: draftInputs[0].value,
 
+            owner: draftInputs[1].value,
 
+            email: draftInputs[2].value,
 
+            phone: draftInputs[3].value,
 
-/*==========================================
-PARTNER DRAFT AUTO SAVE
-==========================================*/
+            category: draftInputs[4].value,
 
-const draftInputs = partnerForm.querySelectorAll("input, select, textarea");
+            city: draftInputs[5].value,
 
-// Restore draft
-const draft = JSON.parse(localStorage.getItem("partnerDraft"));
+            description: draftInputs[6].value
 
-if (draft) {
+        };
 
-    draftInputs[0].value = draft.restaurant || "";
-    draftInputs[1].value = draft.owner || "";
-    draftInputs[2].value = draft.email || "";
-    draftInputs[3].value = draft.phone || "";
-    draftInputs[4].value = draft.category || "";
-    draftInputs[5].value = draft.city || "";
-    draftInputs[6].value = draft.description || "";
+        localStorage.setItem(
+            "partnerDraft",
+            JSON.stringify(draft)
+        );
 
-}
+    }
 
-// Save draft whenever user types
-draftInputs.forEach(input => {
-
-    input.addEventListener("input", savePartnerDraft);
-    input.addEventListener("change", savePartnerDraft);
-
-});
-
-function savePartnerDraft() {
-
-    const draft = {
-
-        restaurant: draftInputs[0].value,
-        owner: draftInputs[1].value,
-        email: draftInputs[2].value,
-        phone: draftInputs[3].value,
-        category: draftInputs[4].value,
-        city: draftInputs[5].value,
-        description: draftInputs[6].value
-
-    };
-
-    localStorage.setItem("partnerDraft", JSON.stringify(draft));
-
-}
-    partnerForm.addEventListener("submit", function (e) {
+    partnerForm.addEventListener("submit", async (e) => {
 
         e.preventDefault();
 
-        // Save draft while typing
-const inputs = partnerForm.querySelectorAll("input, select, textarea");
-
-inputs.forEach(input => {
-
-    input.addEventListener("input", () => {
-
-        const draft = {};
-
-        inputs.forEach(field => {
-
-            draft[field.placeholder || field.name || field.type] = field.value;
-
-        });
-
-        localStorage.setItem("partnerDraft", JSON.stringify(draft));
-
-    });
-
-});
-
         const partner = {
 
-            restaurant: inputs[0].value.trim(),
+            restaurant: draftInputs[0].value.trim(),
 
-            owner: inputs[1].value.trim(),
+            owner: draftInputs[1].value.trim(),
 
-            email: inputs[2].value.trim(),
+            email: draftInputs[2].value.trim(),
 
-            phone: inputs[3].value.trim(),
+            phone: draftInputs[3].value.trim(),
 
-            category: inputs[4].value,
+            category: draftInputs[4].value,
 
-            city: inputs[5].value.trim(),
+            city: draftInputs[5].value.trim(),
 
-            description: inputs[6].value.trim(),
+            description: draftInputs[6].value.trim(),
 
             date: new Date().toLocaleDateString(),
 
@@ -493,150 +406,149 @@ inputs.forEach(input => {
 
         };
 
-fetch("https://foodchain-api.onrender.com/partnership", {
+        try {
 
-    method: "POST",
+            const response = await fetch(
 
-    headers: {
+                "https://foodchain-api.onrender.com/partnership",
 
-        "Content-Type":"application/json"
+                {
 
-    },
+                    method: "POST",
 
-    body: JSON.stringify(partner)
+                    headers: {
 
-})
+                        "Content-Type": "application/json"
 
-.then(data => {
+                    },
 
-    addNotification(
-        `New partnership request from ${partner.restaurant}`,
-        "partnerships.html"
-    );
+                    body: JSON.stringify(partner)
 
-    localStorage.removeItem("partnerDraft");
+                }
 
-    alert("Application submitted successfully!");
+            );
 
-    partnerForm.reset();
+            const data = await response.json();
 
-})
+            if (typeof addNotification === "function") {
 
-.catch(error => {
+                addNotification(
 
-    console.error(error);
+                    `New partnership request from ${partner.restaurant}`,
 
-    alert("Could not connect to server.");
+                    "partnerships.html"
 
-});
-        
+                );
+
+            }
+
+            localStorage.removeItem("partnerDraft");
+
+            alert(data.message || "Application submitted successfully!");
+
+            partnerForm.reset();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert("Could not connect to server.");
+
+        }
+
     });
 
 }
-
-
 
 /*==========================================
 HOME PAGE RESTAURANTS
 ==========================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-    const homeGrid =
-    document.getElementById("homeRestaurantsGrid");
+    const homeGrid = document.getElementById("homeRestaurantsGrid");
 
-    if(!homeGrid) return;
+    if (!homeGrid) return;
 
-    const partnerCard =
-    homeGrid.querySelector(".restaurant-card");
+    const partnerCard = homeGrid.querySelector(".restaurant-card");
 
- let restaurants = [];
-
-async function loadRestaurants() {
+    homeGrid.innerHTML = "";
 
     try {
 
-        const response =
-            await fetch("https://foodchain-api.onrender.com/restaurants");
+        const response = await fetch("https://foodchain-api.onrender.com/restaurants");
 
-        restaurants = await response.json();
+        const restaurants = await response.json();
 
-     loadRestaurants()
-    } catch (error) {
+        restaurants.slice(0, 3).forEach((restaurant) => {
 
-        console.error(error);
+            homeGrid.innerHTML += `
 
-        restaurantsGrid.innerHTML = `
-            <div class="empty-restaurants">
-                <h2>Could not load restaurants.</h2>
-            </div>
-        `;
+            <article class="restaurant-card">
 
-    }
+                <img
+                    src="${restaurant.coverImage || "assets/images/logo.png"}"
+                    alt="${restaurant.name}">
 
-}
+                <div class="restaurant-content">
 
-    // Remove all cards except the Partner card
-    homeGrid.innerHTML = "";
+                    <span class="restaurant-category">
 
-    restaurants.slice(0,3).forEach((restaurant)=>{
+                        ${restaurant.category}
 
-        homeGrid.innerHTML += `
+                    </span>
 
-        <article class="restaurant-card">
+                    <h3>${restaurant.name}</h3>
 
-            <img
-            src="${restaurant.coverImage || "assets/images/logo.png"}"
-            alt="${restaurant.name}">
+                    <p>${restaurant.description}</p>
 
-            <div class="restaurant-content">
+                    <div class="restaurant-meta">
 
-                <span class="restaurant-category">
+                        <span>⭐ ${restaurant.rating}</span>
 
-                    ${restaurant.category}
+                        <span>${restaurant.deliveryTime}</span>
 
-                </span>
+                    </div>
 
-                <h3>
+                    <a
+                        href="single-restaurant.html?id=${restaurant.id}"
+                        class="restaurant-btn">
 
-                    ${restaurant.name}
+                        View Restaurant →
 
-                </h3>
-
-                <p>
-
-                    ${restaurant.description}
-
-                </p>
-
-                <div class="restaurant-meta">
-
-                    <span>⭐ ${restaurant.rating}</span>
-
-                    <span>${restaurant.deliveryTime}</span>
+                    </a>
 
                 </div>
 
-<a
-href="single-restaurant.html?id=${restaurant.id}"
-class="restaurant-btn">
+            </article>
 
-    View Restaurant →
+            `;
 
-</a>
+        });
+
+        if (partnerCard) {
+
+            homeGrid.appendChild(partnerCard);
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        homeGrid.innerHTML = `
+
+            <div class="empty-restaurants">
+
+                <h2>Could not load restaurants.</h2>
 
             </div>
 
-        </article>
-
         `;
-
-    });
-
-    // Add the Partner card back
-    if(partnerCard){
-
-        homeGrid.appendChild(partnerCard);
 
     }
 
@@ -656,7 +568,7 @@ faqItems.forEach(item => {
 
         faqItems.forEach(other => {
 
-            if(other !== item){
+            if (other !== item) {
 
                 other.classList.remove("active");
 
@@ -671,17 +583,20 @@ faqItems.forEach(item => {
 });
 
 /*=========================================
-Closes the opened FAQ when clicking outside
+CLICK OUTSIDE FAQ
 =========================================*/
 
 document.addEventListener("click", (e) => {
 
     const isFAQ = e.target.closest(".faq-item");
 
-    if(!isFAQ){
+    if (!isFAQ) {
 
-        document.querySelectorAll(".faq-item")
-        .forEach(item => item.classList.remove("active"));
+        document.querySelectorAll(".faq-item").forEach(item => {
+
+            item.classList.remove("active");
+
+        });
 
     }
 
@@ -691,44 +606,29 @@ document.addEventListener("click", (e) => {
 FAQ SEARCH
 ==========================================*/
 
-const faqSearch =
-document.getElementById("faqSearch");
+const faqSearch = document.getElementById("faqSearch");
 
-if(faqSearch){
+if (faqSearch) {
 
-    faqSearch.addEventListener("input", function(){
+    faqSearch.addEventListener("input", function () {
 
-        const keyword =
-        this.value.toLowerCase();
+        const keyword = this.value.toLowerCase();
 
-        const faqItems =
-        document.querySelectorAll(".faq-item");
+        document.querySelectorAll(".faq-item").forEach(item => {
 
-        faqItems.forEach(item=>{
+            const question = item.querySelector(".faq-question")
+                .textContent.toLowerCase();
 
-            const question =
-            item.querySelector(".faq-question")
-            .textContent
-            .toLowerCase();
+            const answer = item.querySelector(".faq-answer")
+                .textContent.toLowerCase();
 
-            const answer =
-            item.querySelector(".faq-answer")
-            .textContent
-            .toLowerCase();
-
-            if(question.includes(keyword) || answer.includes(keyword)){
-
-                item.style.display = "";
-
-            }else{
-
-                item.style.display = "none";
-
-            }
+            item.style.display =
+                question.includes(keyword) || answer.includes(keyword)
+                    ? ""
+                    : "none";
 
         });
 
     });
 
 }
-
