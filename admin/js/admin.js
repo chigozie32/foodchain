@@ -22,12 +22,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("sidebarOverlay");
 
 
-    // Apply saved dark mode
-if (localStorage.getItem("darkMode") === "true") {
 
-    document.body.classList.add("dark-mode");
+// Load admin settings
+fetch("https://foodchain-api.onrender.com/api/admin/settings")
+    .then(res => res.json())
+    .then(admin => {
 
-}
+        // Dark mode
+        if (admin.darkMode) {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+
+        // Profile image
+        document.querySelectorAll(".profile-image").forEach(img => {
+            if (admin.profileImage) {
+                img.src = admin.profileImage;
+            }
+        });
+
+    })
+    .catch(err => console.error("Failed to load admin settings:", err));
 
   if (!menuToggle || !sidebar) return;
 
@@ -125,40 +141,207 @@ let currentFilter = "all";
 /*==========================================
 NOTIFICATION STORAGE
 ==========================================*/
+/*==========================================
+NOTIFICATIONS (MongoDB)
+==========================================*/
 
-function getNotifications() {
+let currentFilter = "all";
 
-    const notifications = localStorage.getItem("notifications");
+async function loadNotifications() {
 
-    return notifications ? JSON.parse(notifications) : [];
+    const list = document.getElementById("notificationList");
+    const badge = document.getElementById("notificationCount");
+
+    if (!list || !badge) return;
+
+    try {
+
+        let notifications = await getNotifications();
+
+        list.innerHTML = "";
+
+        if (!notifications.length) {
+
+            list.innerHTML = "<li>No notifications yet.</li>";
+            badge.textContent = "0";
+            return;
+
+        }
+
+        let unread = 0;
+
+        notifications
+        .filter(notification => {
+
+            if (currentFilter === "unread") {
+
+                return !notification.read;
+
+            }
+
+            return true;
+
+        })
+        .forEach(notification => {
+
+            if (!notification.read) unread++;
+
+            const li = document.createElement("li");
+
+            if (!notification.read) {
+
+                li.classList.add("unread");
+
+            }
+
+            li.innerHTML = `
+
+                <div class="notification-item">
+
+                    <div>
+
+                        <strong>${notification.message}</strong><br>
+
+                        <small>${timeAgo(notification.createdAt)}</small>
+
+                    </div>
+
+                    <button class="delete-notification">
+
+                        <i class="fas fa-trash"></i>
+
+                    </button>
+
+                </div>
+
+            `;
+
+            li.querySelector(".delete-notification")
+            .addEventListener("click", async (e) => {
+
+                e.stopPropagation();
+
+                await deleteNotification(notification._id);
+
+                loadNotifications();
+
+            });
+
+            li.addEventListener("click", async () => {
+
+                await fetch("https://foodchain-api.onrender.com/notifications/read-all", {
+
+                    method: "PUT"
+
+                });
+
+                loadNotifications();
+
+                if (notification.link) {
+
+                    window.location.href = notification.link;
+
+                }
+
+            });
+
+            list.appendChild(li);
+
+        });
+
+        badge.textContent = unread;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
 
 }
 
-function saveNotifications(notifications) {
+function timeAgo(dateString) {
 
-    localStorage.setItem(
-        "notifications",
-        JSON.stringify(notifications)
-    );
+    const now = new Date();
 
-}
+    const past = new Date(dateString);
 
-function addNotification(message, link = "#") {
+    const diff = Math.floor((now - past) / 1000);
 
-    const notifications = getNotifications();
+    if (diff < 60) return `${diff} seconds ago`;
 
-    notifications.unshift({
+    const minutes = Math.floor(diff / 60);
 
-        message,
-        link,
-        read: false,
-        date: new Date().toISOString()
+    if (minutes < 60) return `${minutes} minutes ago`;
 
-    });
+    const hours = Math.floor(minutes / 60);
 
-    saveNotifications(notifications);
+    if (hours < 24) return `${hours} hours ago`;
+
+    const days = Math.floor(hours / 24);
+
+    return `${days} days ago`;
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadNotifications();
+
+    const markAllReadBtn = document.getElementById("markAllReadBtn");
+
+    if (markAllReadBtn) {
+
+        markAllReadBtn.addEventListener("click", async (e) => {
+
+            e.preventDefault();
+
+            await markAllAsRead();
+
+            loadNotifications();
+
+        });
+
+    }
+
+    const allBtn = document.getElementById("showAllBtn");
+
+    const unreadBtn = document.getElementById("showUnreadBtn");
+
+    if (allBtn) {
+
+        allBtn.addEventListener("click", () => {
+
+            currentFilter = "all";
+
+            allBtn.classList.add("active");
+
+            unreadBtn?.classList.remove("active");
+
+            loadNotifications();
+
+        });
+
+    }
+
+    if (unreadBtn) {
+
+        unreadBtn.addEventListener("click", () => {
+
+            currentFilter = "unread";
+
+            unreadBtn.classList.add("active");
+
+            allBtn?.classList.remove("active");
+
+            loadNotifications();
+
+        });
+
+    }
+
+});
 
 /*==========================================
 LOAD NOTIFICATIONS
