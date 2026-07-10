@@ -431,15 +431,15 @@ if (partnerForm) {
 
             if (typeof addNotification === "function") {
 
-                addNotification(
+    await addNotification(
 
-                    `New partnership request from ${partner.restaurant}`,
+        `New partnership request from ${partner.restaurant}`,
 
-                    "partnerships.html"
+        "partnerships.html"
 
-                );
+    );
 
-            }
+}
 
             localStorage.removeItem("partnerDraft");
 

@@ -45,6 +45,11 @@ if (newsletterForm) {
 
             alert(data.message);
 
+            await addNotification(
+    `New newsletter subscriber: ${email}`,
+    "newsletter.html"
+);
+
             newsletterForm.reset();
 
         } catch (error) {

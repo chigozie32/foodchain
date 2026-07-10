@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
 
@@ -14,22 +13,19 @@
 
     </title>
 
-    <link rel="stylesheet"
-          href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 
-    <link rel="stylesheet"
-          href="css/restaurants.css">
+    <link rel="stylesheet" href="css/restaurants.css">
 
     <link rel="stylesheet" href="css/admin.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<!-- <div class="dashboard"> -->
+    <!-- <div class="dashboard"> -->
 
     <!-- Sidebar -->
 
@@ -37,8 +33,7 @@
 
         <div class="logo">
 
-            <img src="../assets/images/logo.png"
-                 alt="FoodChain">
+            <img src="../assets/images/logo.png" alt="FoodChain">
 
             <h2>FoodChain</h2>
 
@@ -47,86 +42,86 @@
         <ul class="sidebar-menu">
 
             <a href="dashboard.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-chart-line"></i>
 
                     <span>Dashboard</span>
 
-                    
+
                 </li>
             </a>
 
             <a href="restaurants.html">
-            <li class="active">
+                <li class="active">
 
 
                     <i class="fas fa-store"></i>
 
-                    
-                </a>
-                <span>Restaurants</span>
+
+            </a>
+            <span>Restaurants</span>
 
             </li>
 
             <a href="partnerships.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-handshake"></i>
 
                     <span>Partnership Requests</span>
 
-                    
+
                 </li>
             </a>
 
             <a href="messages.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-envelope"></i>
 
                     <span>Contact Messages</span>
 
-                    
+
                 </li>
             </a>
 
             <a href="newsletter.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-newspaper"></i>
 
                     <span>Newsletter</span>
 
-                    
+
                 </li>
             </a>
 
             <a href="blog.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-blog"></i>
 
                     <span>Blog</span>
 
-                    
+
                 </li>
             </a>
 
             <a href="settings.html">
-            <li>
+                <li>
 
 
                     <i class="fas fa-cog"></i>
 
                     <span>Settings</span>
 
-                    
+
                 </li>
             </a>
 
@@ -135,438 +130,387 @@
     </aside>
 
     <main class="main-content">
-<header class="topbar">
+        <header class="topbar">
 
-    <div class="topbar-left">
+            <div class="topbar-left">
 
-        <button class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle">
 
-            <i class="fas fa-bars"></i>
+                    <i class="fas fa-bars"></i>
 
-        </button>
+                </button>
 
-        <h1>Restaurant</h1>
+                <h1>Restaurant</h1>
 
-    </div>
+            </div>
 
-    <div class="topbar-right">
+            <div class="topbar-right">
 
-        <div class="notification">
+                <div class="notification">
 
-    <i class="fas fa-bell" id="notificationBell"></i>
+                    <i class="fas fa-bell" id="notificationBell"></i>
 
-    <span class="notification-count" id="notificationCount">0</span>
+                    <span class="notification-count" id="notificationCount">0</span>
 
-    <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-dropdown" id="notificationDropdown">
 
-        <h3>Notifications</h3>
+                        <h3>Notifications</h3>
 
-        <div class="notification-actions">
-    <button id="markAllReadBtn">
-        ✓ Mark All as Read
-    </button>
-</div>
+                        <div class="notification-actions">
+                            <button id="markAllReadBtn">
+                                ✓ Mark All as Read
+                            </button>
+                        </div>
 
-<div class="notification-actions">
+                        <div class="notification-actions">
 
-    <button id="showAllBtn">All</button>
+                            <button id="showAllBtn">All</button>
 
-    <button id="showUnreadBtn">Unread</button>
+                            <button id="showUnreadBtn">Unread</button>
 
-</div>
+                        </div>
 
-<ul id="notificationList"></ul>
+                        <ul id="notificationList"></ul>
 
-        <ul id="notificationList">
-        </ul>
+                        <ul id="notificationList">
+                        </ul>
 
-        <button id="viewAllNotifications">
+                        <button id="viewAllNotifications">
 
-            View All
+                            View All
 
-        </button>
+                        </button>
 
-    </div>
+                    </div>
 
-</div>
+                </div>
 
 
-        <img src="../assets/images/logo.png"
-             alt="Admin">
+                <img src="../assets/images/logo.png" alt="Admin">
 
-    </div>
+            </div>
 
-</header>
+        </header>
 
-<!-- Mobile Overlay -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         </header>
 
 
         <!-- ========================================= -->
-<!-- ADD RESTAURANT -->
-<!-- ========================================= -->
+        <!-- ADD RESTAURANT -->
+        <!-- ========================================= -->
 
-<section class="restaurant-form">
+        <section class="restaurant-form">
 
-    <div class="form-header">
+            <div class="form-header">
 
-        <h2>
+                <h2>
 
-            Add New Restaurant
+                    Add New Restaurant
 
-        </h2>
+                </h2>
 
-        <p>
+                <p>
 
-            Complete the information below to add a restaurant to the FoodChain platform.
+                    Complete the information below to add a restaurant to the FoodChain platform.
 
-        </p>
-
-    </div>
-
-    <form id="restaurantForm">
-
-        <div class="form-grid">
-
-            <div class="form-group">
-
-                <label>
-
-                    Restaurant Name
-
-                </label>
-
-                <input
-                    type="text"
-                    id="restaurantName"
-                    placeholder="Chicken Republic"
-                    required>
+                </p>
 
             </div>
 
-            <div class="form-group">
+            <form id="restaurantForm">
 
-                <label>
+                <div class="form-grid">
 
-                    Category
+                    <div class="form-group">
 
-                </label>
+                        <label>
 
-                <select id="restaurantCategory" required>
+                            Restaurant Name
 
-                    <option>
+                        </label>
 
-                    </option>
+                        <input type="text" id="restaurantName" placeholder="Chicken Republic" required>
 
-                    <option>
+                    </div>
 
-                        Fast Food
+                    <div class="form-group">
 
-                    </option>
+                        <label>
 
-                    <option>
+                            Category
 
-                        Local Food
+                        </label>
 
-                    </option>
+                        <select id="restaurantCategory" required>
 
-                    <option>
+                            <option>
 
-                        Pizza
+                            </option>
 
-                    </option>
+                            <option>
 
-                    <option>
+                                Fast Food
 
-                        Chinese
+                            </option>
 
-                    </option>
+                            <option>
 
-                    <option>
+                                Local Food
 
-                        Shawarma
+                            </option>
 
-                    </option>
+                            <option>
 
-                    <option>
+                                Pizza
 
-                        Café
+                            </option>
 
-                    </option>
+                            <option>
 
-                </select>
+                                Chinese
 
-            </div>
+                            </option>
 
-            <div class="form-group">
+                            <option>
 
-                <label>
+                                Shawarma
 
-                    Delivery Time
+                            </option>
 
-                </label>
+                            <option>
 
-                <input
-                    type="text"
-                    id="deliveryTime"
-                    placeholder="20 - 30 mins"
-                    required>
+                                Café
 
-            </div>
+                            </option>
 
-            <div class="form-group">
+                        </select>
 
-                <label>
+                    </div>
 
-                    Rating
+                    <div class="form-group">
 
-                </label>
+                        <label>
 
-                <input
-                    type="number"
-                    id="rating"
-                    step="0.1"
-                    min="0"
-                    max="5"
-                    placeholder="4.8"
-                    >
+                            Delivery Time
 
-            </div>
+                        </label>
 
-        </div>
+                        <input type="text" id="deliveryTime" placeholder="20 - 30 mins" required>
 
-        <div class="form-grid">
+                    </div>
 
-    <div class="form-group">
+                    <div class="form-group">
 
-        <label>
+                        <label>
 
-            Restaurant Address
+                            Rating
 
-        </label>
+                        </label>
 
-        <input
-            type="text"
-            id="restaurantAddress"
-            placeholder="12 Admiralty Way, Lekki, Lagos"
-            required>
+                        <input type="number" id="rating" step="0.1" min="0" max="5" placeholder="4.8">
 
-    </div>
+                    </div>
 
-    <div class="form-group">
+                </div>
 
-        <label>
+                <div class="form-grid">
 
-            Phone Number
+                    <div class="form-group">
 
-        </label>
+                        <label>
 
-        <input
-            type="tel"
-            id="restaurantPhone"
-            placeholder="+234 XXX XXX XXXX"
-            required>
+                            Restaurant Address
 
-    </div>
+                        </label>
 
-    <div class="form-group">
+                        <input type="text" id="restaurantAddress" placeholder="12 Admiralty Way, Lekki, Lagos" required>
 
-        <label>
+                    </div>
 
-            Website (Optional)
+                    <div class="form-group">
 
-        </label>
+                        <label>
 
-        <input
-            type="url"
-            id="restaurantWebsite"
-            placeholder="https://restaurant.com">
+                            Phone Number
 
-    </div>
+                        </label>
 
-    <div class="form-group">
+                        <input type="tel" id="restaurantPhone" placeholder="+234 XXX XXX XXXX" required>
 
-        <label>
+                    </div>
 
-            Delivery Fee (₦)
+                    <div class="form-group">
 
-        </label>
+                        <label>
 
-        <input
-            type="number"
-            id="deliveryFee"
-            placeholder="1500">
+                            Website (Optional)
 
-    </div>
+                        </label>
 
-</div>
+                        <input type="url" id="restaurantWebsite" placeholder="https://restaurant.com">
 
-<div class="form-group">
+                    </div>
 
-    <label>
+                    <div class="form-group">
 
-        Restaurant Description
+                        <label>
 
-    </label>
+                            Delivery Fee (₦)
 
-    <textarea
-        id="restaurantDescription"
-        rows="6"
-        placeholder="Tell customers about this restaurant..." required></textarea>
+                        </label>
 
-</div>
+                        <input type="number" id="deliveryFee" placeholder="1500">
 
-<div class="form-grid">
+                    </div>
 
-    <div class="form-group">
+                </div>
 
-        <label>
+                <div class="form-group">
 
-            Restaurant Logo
+                    <label>
 
-        </label>
+                        Restaurant Description
 
-        <input
-            type="file"
-            id="restaurantLogo"
-            accept="image/*">
+                    </label>
 
-            <img
-    id="logoPreview"
-    class="image-preview"
-   
-    alt="Logo Preview">
+                    <textarea id="restaurantDescription" rows="6" placeholder="Tell customers about this restaurant..."
+                        required></textarea>
 
-    </div>
+                </div>
 
-    <div class="form-group">
+                <div class="form-grid">
 
-        <label>
+                    <div class="form-group">
 
-            Cover Image
+                        <label>
 
-        </label>
+                            Restaurant Logo
 
-        <input
-            type="file"
-            id="restaurantCover"
-            accept="image/*">
+                        </label>
 
-            <img
-    id="coverPreview"
-    class="image-preview"
-  
-    alt="Cover Preview">
+                        <input type="file" id="restaurantLogo" accept="image/*">
 
-    </div>
+                        <img id="logoPreview" class="image-preview" alt="Logo Preview">
 
-</div>
+                    </div>
 
+                    <div class="form-group">
 
-<div class="form-actions">
+                        <label>
 
-    <button
-        type="submit"
-        class="save-btn">
+                            Cover Image
 
-        <i class="fas fa-save"></i>
+                        </label>
 
-        Save Restaurant
+                        <input type="file" id="restaurantCover" accept="image/*">
 
-    </button>
+                        <img id="coverPreview" class="image-preview" alt="Cover Preview">
 
-</div>
+                    </div>
 
+                </div>
 
 
-<div class="stats-container">
+                <div class="form-actions">
 
-    <div class="stat-card">
-        <h3 id="totalRestaurants">0</h3>
-        <p>Total Restaurants</p>
-    </div>
+                    <button type="submit" class="save-btn">
 
-    <div class="stat-card">
-        <h3 id="avgRating">0</h3>
-        <p>Average Rating</p>
-    </div>
+                        <i class="fas fa-save"></i>
 
-</div>
+                        Save Restaurant
 
-<div id="categoryStats" class="stats-container"></div>
+                    </button>
 
+                </div>
 
-<!-- ========================================= -->
-<!-- RESTAURANT LIST -->
-<!-- ========================================= -->
 
-<div class="search-container">
 
-    <input
-        type="text"
-        id="searchRestaurant"
-        placeholder="Search restaurant by name...">
+                <div class="stats-container">
 
-</div>
+                    <div class="stat-card">
+                        <h3 id="totalRestaurants">0</h3>
+                        <p>Total Restaurants</p>
+                    </div>
 
-<section class="restaurant-list">
+                    <div class="stat-card">
+                        <h3 id="avgRating">0</h3>
+                        <p>Average Rating</p>
+                    </div>
 
-    <div class="list-header">
+                </div>
 
-        <h2>
+                <div id="categoryStats" class="stats-container"></div>
 
-            All Restaurants
 
-        </h2>
+                <!-- ========================================= -->
+                <!-- RESTAURANT LIST -->
+                <!-- ========================================= -->
 
-    </div>
+                <div class="search-container">
 
-    <div class="table-container">
+                    <input type="text" id="searchRestaurant" placeholder="Search restaurant by name...">
 
-        <table>
+                </div>
 
-            <thead>
+                <section class="restaurant-list">
 
-                <tr>
+                    <div class="list-header">
 
-                    <th>Name</th>
+                        <h2>
 
-                    <th>Category</th>
+                            All Restaurants
 
-                    <th>Rating</th>
+                        </h2>
 
-                    <th>Delivery</th>
+                    </div>
 
-                    <th>Actions</th>
+                    <div class="table-container">
 
-                </tr>
+                        <table>
 
-            </thead>
+                            <thead>
 
-            <tbody id="restaurantTableBody">
+                                <tr>
 
-            </tbody>
+                                    <th>Name</th>
 
-        </table>
+                                    <th>Category</th>
 
-    </div>
+                                    <th>Rating</th>
 
-</section>
+                                    <th>Delivery</th>
 
-    </form>
+                                    <th>Actions</th>
 
-</section>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="restaurantTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+        </section>
 
 
 
     </main>
 
-</div>
-<script src="js/notifications.js"></script>
-<script src="js/restaurants.js"></script>
-<script src="js/admin.js"></script>
+    </div>
+    <script src="js/notifications.js"></script>
+    <script src="js/restaurants.js"></script>
+    <script src="js/admin.js"></script>
 
 </body>
 

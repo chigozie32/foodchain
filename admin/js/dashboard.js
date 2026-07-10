@@ -127,7 +127,9 @@ function buildRecentActivities(){
 
             category: "Restaurant",
 
-            date: item.date || "-",
+            date: item.createdAt
+    ? new Date(item.createdAt).toLocaleDateString()
+    : "-",
 
             status: "Published"
 
@@ -144,7 +146,9 @@ function buildRecentActivities(){
 
             category: "Partnership",
 
-            date: item.date || "-",
+           date: item.createdAt
+    ? new Date(item.createdAt).toLocaleDateString()
+    : "-",
 
             status: item.status || "Pending"
 
@@ -161,7 +165,9 @@ function buildRecentActivities(){
 
             category: "Support",
 
-            date: item.date || "-",
+            date: item.createdAt
+    ? new Date(item.createdAt).toLocaleDateString()
+    : "-",
 
             status: item.status || "Unread"
 
@@ -178,7 +184,9 @@ function buildRecentActivities(){
 
             category: "Newsletter",
 
-            date: item.date || "-",
+           date: item.createdAt
+    ? new Date(item.createdAt).toLocaleDateString()
+    : "-",
 
             status: "Subscribed"
 

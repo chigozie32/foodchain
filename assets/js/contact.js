@@ -66,7 +66,7 @@ if (contactForm) {
     SUBMIT CONTACT FORM
     ==============================================*/
 
-    contactForm.addEventListener("submit", function (e) {
+   contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const fullName = document.getElementById("fullName").value.trim();
@@ -91,7 +91,7 @@ if (contactForm) {
     const fields = ["fullName", "email", "phone", "subject", "message"];
 
     // 2. Network Request (Updated to the correct '/messages' route)
-    fetch("https://onrender.com", {
+  fetch("https://foodchain-api.onrender.com/contact", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -113,8 +113,13 @@ if (contactForm) {
     .then(data => {
         // 3. Execution Only Happens on Verified Network Success
         if (typeof addNotification === "function") {
-            addNotification(`New contact message from ${fullName}`, "messages.html");
-        }
+
+    await addNotification(
+        `New contact message from ${fullName}`,
+        "messages.html"
+    );
+
+}
 
         fields.forEach(id => {
             localStorage.removeItem(id);

@@ -2,318 +2,242 @@
 PARTNERSHIP REQUESTS PAGE
 ==========================================*/
 
-.page-intro{
+.page-intro {
+  background: #ffffff;
 
-    background:#ffffff;
+  padding: 20px;
 
-    padding:20px;
+  border-radius: 12px;
 
-    border-radius:12px;
+  margin-bottom: 25px;
 
-    margin-bottom:25px;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.page-intro h2{
+.page-intro h2 {
+  margin-bottom: 10px;
 
-    margin-bottom:10px;
+  color: #222;
 
-    color:#222;
-
-    font-size:28px;
-
+  font-size: 28px;
 }
 
-.page-intro p{
+.page-intro p {
+  color: #666;
 
-    color:#666;
-
-    line-height:1.6;
-
+  line-height: 1.6;
 }
 
-.search-container{
-
-    margin-bottom:25px;
-
+.search-container {
+  margin-bottom: 25px;
 }
 
-.search-container input{
+.search-container input {
+  width: 100%;
 
-    width:100%;
+  padding: 14px 18px;
 
-    padding:14px 18px;
+  border: 1px solid #ddd;
 
-    border:1px solid #ddd;
+  border-radius: 10px;
 
-    border-radius:10px;
+  font-size: 16px;
 
-    font-size:16px;
+  outline: none;
 
-    outline:none;
-
-    transition:.3s;
-
+  transition: 0.3s;
 }
 
-.search-container input:focus{
+.search-container input:focus {
+  border-color: #ff6b00;
 
-    border-color:#ff6b00;
-
-    box-shadow:0 0 8px rgba(255,107,0,.2);
-
+  box-shadow: 0 0 8px rgba(255, 107, 0, 0.2);
 }
 
-.restaurant-list{
+.restaurant-list {
+  background: #ffffff;
 
-    background:#ffffff;
+  padding: 20px;
 
-    padding:20px;
+  border-radius: 12px;
 
-    border-radius:12px;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.list-header{
-
-    margin-bottom:20px;
-
+.list-header {
+  margin-bottom: 20px;
 }
 
-.list-header h2{
-
-    color:#222;
-
+.list-header h2 {
+  color: #222;
 }
 
-.table-container{
-
-    overflow-x:auto;
-
+.table-container {
+  overflow-x: auto;
 }
 
-table{
+table {
+  width: 100%;
 
-    width:100%;
-
-    border-collapse:collapse;
-
+  border-collapse: collapse;
 }
 
-thead{
+thead {
+  background: #ff6b00;
 
-    background:#ff6b00;
-
-    color:#fff;
-
+  color: #fff;
 }
 
-th{
+th {
+  padding: 15px;
 
-    padding:15px;
-
-    text-align:left;
-
+  text-align: left;
 }
 
-td{
+td {
+  padding: 15px;
 
-    padding:15px;
-
-    border-bottom:1px solid #eee;
-
+  border-bottom: 1px solid #eee;
 }
 
-tbody tr:hover{
-
-    background:#f8f8f8;
-
+tbody tr:hover {
+  background: #f8f8f8;
 }
 
-.action-buttons{
+.action-buttons {
+  display: flex;
 
-    display:flex;
-
-    gap:10px;
-
+  gap: 10px;
 }
 
-.action-buttons button{
+.action-buttons button {
+  border: none;
 
-    border:none;
+  padding: 8px 14px;
 
-    padding:8px 14px;
+  border-radius: 6px;
 
-    border-radius:6px;
+  cursor: pointer;
 
-    cursor:pointer;
+  font-size: 14px;
 
-    font-size:14px;
+  color: #fff;
 
-    color:#fff;
-
-    transition:.3s;
-    
-
+  transition: 0.3s;
 }
 
 /* ==========================================
 BUTTONS
 ========================================== */
 
-.view-btn{
-
-    background:#1e88e5;
-    color:#fff;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
-
+.view-btn {
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.view-btn:hover{
-
-    background:#1565c0;
-
+.view-btn:hover {
+  background: #1565c0;
 }
 
-.approve-btn{
-
-    background:#28a745;
-    color:#fff;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
-
+.approve-btn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.approve-btn:hover{
-
-    background:#218838;
-
+.approve-btn:hover {
+  background: #218838;
 }
 
 .reject-btn,
-
-.delete-btn{
-
-    background:#e83e3e;
-    color:#fff;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
-    
+.delete-btn {
+  background: #e83e3e;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .reject-btn:hover,
-
-.delete-btn:hover{
-    background:#e83e3e;
-
+.delete-btn:hover {
+  background: #e83e3e;
 }
 
 /*==================================================
 RESPONSIVE
 ==================================================*/
 
-@media(max-width:991px){
+@media (max-width: 991px) {
+  .page-intro {
+    padding: 20px;
+  }
 
-.page-intro{
-
-    padding:20px;
-
+  .restaurant-list {
+    padding: 20px;
+  }
 }
 
-.restaurant-list{
+@media (max-width: 768px) {
+  .page-intro h2 {
+    font-size: 24px;
+  }
 
-    padding:20px;
+  .page-intro p {
+    font-size: 0.95rem;
+  }
 
-}
+  .search-container input {
+    font-size: 15px;
 
-}
+    padding: 13px 16px;
+  }
 
-@media(max-width:768px){
+  .restaurant-list {
+    padding: 18px;
+  }
 
-.page-intro h2{
+  .list-header {
+    margin-bottom: 18px;
+  }
 
-    font-size:24px;
+  .list-header h2 {
+    font-size: 1.4rem;
+  }
 
-}
+  .table-container {
+    overflow-x: auto;
+  }
 
-.page-intro p{
+  table {
+    min-width: 1000px;
+  }
 
-    font-size:.95rem;
+  .action-buttons {
+    flex-wrap: wrap;
 
-}
+    gap: 8px;
+  }
 
-.search-container input{
+  .action-buttons button {
+    font-size: 13px;
 
-    font-size:15px;
-
-    padding:13px 16px;
-
-}
-
-.restaurant-list{
-
-    padding:18px;
-
-}
-
-.list-header{
-
-    margin-bottom:18px;
-
-}
-
-.list-header h2{
-
-    font-size:1.4rem;
-
-}
-
-.table-container{
-
-    overflow-x:auto;
-
-}
-
-table{
-
-    min-width:1000px;
-
-}
-
-.action-buttons{
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-}
-
-.action-buttons button{
-
-    font-size:13px;
-
-    padding:7px 10px;
-
-}
-
+    padding: 7px 10px;
+  }
 }

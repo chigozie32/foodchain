@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
 
@@ -14,282 +13,274 @@
 
     </title>
 
-    <link rel="stylesheet"
-          href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 
-    <link rel="stylesheet"
-          href="css/partnerships.css">
+    <link rel="stylesheet" href="css/partnerships.css">
 
     <link rel="stylesheet" href="css/admin.css">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="dashboard">
+    <div class="dashboard">
 
-    <!-- Sidebar -->
+        <!-- Sidebar -->
 
-    <aside class="sidebar">
+        <aside class="sidebar">
 
-        <div class="logo">
+            <div class="logo">
 
-            <img src="../assets/images/logo.png"
-                 alt="FoodChain">
+                <img src="../assets/images/logo.png" alt="FoodChain">
 
-            <h2>FoodChain</h2>
+                <h2>FoodChain</h2>
 
-        </div>
+            </div>
 
-        <ul class="sidebar-menu">
+            <ul class="sidebar-menu">
 
-            <a href="dashboard.html">
-            <li>
-
-
-                    <i class="fas fa-chart-line"></i>
-
-                    <span>Dashboard</span>
-
-                    
-                </li>
-            </a>
-
-            <a href="restaurants.html">
-            <li>
+                <a href="dashboard.html">
+                    <li>
 
 
-                    <i class="fas fa-store"></i>
+                        <i class="fas fa-chart-line"></i>
 
-                    <span>Restaurants</span>
-
-                    
-                </li>
-            </a>
-
-            <a href="partnerships.html">
-            <li class="active">
+                        <span>Dashboard</span>
 
 
-                    <i class="fas fa-handshake"></i>
+                    </li>
+                </a>
 
-                    
+                <a href="restaurants.html">
+                    <li>
+
+
+                        <i class="fas fa-store"></i>
+
+                        <span>Restaurants</span>
+
+
+                    </li>
+                </a>
+
+                <a href="partnerships.html">
+                    <li class="active">
+
+
+                        <i class="fas fa-handshake"></i>
+
+
                 </a>
                 <span>Partnership Requests</span>
 
-            </li>
-
-            <a href="messages.html">
-            <li>
-
-
-                    <i class="fas fa-envelope"></i>
-
-                    <span>Contact Messages</span>
-
-                    
                 </li>
-            </a>
 
-            <a href="newsletter.html">
-            <li>
+                <a href="messages.html">
+                    <li>
 
 
-                    <i class="fas fa-newspaper"></i>
+                        <i class="fas fa-envelope"></i>
 
-                    <span>Newsletter</span>
+                        <span>Contact Messages</span>
 
-                    
-                </li>
-            </a>
 
-            <a href="blog.html">
-            <li>
+                    </li>
+                </a>
 
+                <a href="newsletter.html">
+                    <li>
 
-                    <i class="fas fa-blog"></i>
 
-                    <span>Blog</span>
+                        <i class="fas fa-newspaper"></i>
 
-                    
-                </li>
-            </a>
+                        <span>Newsletter</span>
 
-            <a href="settings.html">
-            <li>
 
+                    </li>
+                </a>
 
-                    <i class="fas fa-cog"></i>
+                <a href="blog.html">
+                    <li>
 
-                    <span>Settings</span>
 
-                    
-                </li>
-            </a>
+                        <i class="fas fa-blog"></i>
 
-        </ul>
+                        <span>Blog</span>
 
-    </aside>
 
-    <!-- Main Content -->
+                    </li>
+                </a>
 
-    <main class="main-content">
+                <a href="settings.html">
+                    <li>
 
-<header class="topbar">
 
-    <div class="topbar-left">
+                        <i class="fas fa-cog"></i>
 
-        <button class="menu-toggle" id="menuToggle">
+                        <span>Settings</span>
 
-            <i class="fas fa-bars"></i>
 
-        </button>
+                    </li>
+                </a>
 
-        <h1>Partnership</h1>
+            </ul>
 
-    </div>
+        </aside>
 
-    <div class="topbar-right">
+        <!-- Main Content -->
 
-        <div class="notification">
+        <main class="main-content">
 
-    <i class="fas fa-bell" id="notificationBell"></i>
+            <header class="topbar">
 
-    <span class="notification-count" id="notificationCount">0</span>
+                <div class="topbar-left">
 
-    <div class="notification-dropdown" id="notificationDropdown">
+                    <button class="menu-toggle" id="menuToggle">
 
-        <h3>Notifications</h3>
+                        <i class="fas fa-bars"></i>
 
-        <div class="notification-actions">
-    <button id="markAllReadBtn">
-        ✓ Mark All as Read
-    </button>
-</div>
+                    </button>
 
+                    <h1>Partnership</h1>
 
-<div class="notification-actions">
+                </div>
 
-    <button id="showAllBtn">All</button>
+                <div class="topbar-right">
 
-    <button id="showUnreadBtn">Unread</button>
+                    <div class="notification">
 
-</div>
-<ul id="notificationList"></ul>
+                        <i class="fas fa-bell" id="notificationBell"></i>
 
-        <ul id="notificationList">
-        </ul>
+                        <span class="notification-count" id="notificationCount">0</span>
 
-        <button id="viewAllNotifications">
+                        <div class="notification-dropdown" id="notificationDropdown">
 
-            View All
+                            <h3>Notifications</h3>
 
-        </button>
+                            <div class="notification-actions">
+                                <button id="markAllReadBtn">
+                                    ✓ Mark All as Read
+                                </button>
+                            </div>
 
-    </div>
 
-</div>
+                            <div class="notification-actions">
 
+                                <button id="showAllBtn">All</button>
 
-        <img src="../assets/images/logo.png"
-             alt="Admin">
+                                <button id="showUnreadBtn">Unread</button>
 
-    </div>
+                            </div>
+                            <ul id="notificationList"></ul>
 
-</header>
+                            <ul id="notificationList">
+                            </ul>
 
-<!-- Mobile Overlay -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+                            <button id="viewAllNotifications">
 
+                                View All
 
-        <!-- Page Intro -->
+                            </button>
 
-        <section class="page-intro">
+                        </div>
 
-            <h2>
+                    </div>
 
-                Restaurant Partnership Requests
 
-            </h2>
+                    <img src="../assets/images/logo.png" alt="Admin">
 
-            <p>
+                </div>
 
-                View, approve, reject or delete partnership requests submitted from the FoodChain website.
+            </header>
 
-            </p>
+            <!-- Mobile Overlay -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-        </section>
 
-        <!-- Search -->
+            <!-- Page Intro -->
 
-        <div class="search-container">
-
-            <input
-                type="text"
-                id="searchPartnership"
-                placeholder="Search by restaurant name...">
-
-        </div>
-
-        <!-- Partnership Table -->
-
-        <section class="restaurant-list">
-
-            <div class="list-header">
+            <section class="page-intro">
 
                 <h2>
 
-                    Pending Requests
+                    Restaurant Partnership Requests
 
                 </h2>
 
-            </div>
+                <p>
 
-            <div class="table-container">
+                    View, approve, reject or delete partnership requests submitted from the FoodChain website.
 
-                <table>
+                </p>
 
-                    <thead>
+            </section>
 
-                        <tr>
+            <!-- Search -->
 
-                            <th>Business</th>
+            <div class="search-container">
 
-                            <th>Owner</th>
-
-                            <th>Category</th>
-
-                            <th>Email</th>
-
-                            <th>Phone</th>
-
-                            <th>City</th>
-
-                            <th>Actions</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="partnershipTableBody">
-
-                    </tbody>
-
-                </table>
+                <input type="text" id="searchPartnership" placeholder="Search by restaurant name...">
 
             </div>
 
-        </section>
+            <!-- Partnership Table -->
 
-    </main>
+            <section class="restaurant-list">
 
-</div>
-<script src="js/notifications.js"></script>
-<script src="js/partnerships.js"></script>
-<script src="js/admin.js"></script>
+                <div class="list-header">
+
+                    <h2>
+
+                        Pending Requests
+
+                    </h2>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Business</th>
+
+                                <th>Owner</th>
+
+                                <th>Category</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>City</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="partnershipTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+    <script src="js/notifications.js"></script>
+    <script src="js/partnerships.js"></script>
+    <script src="js/admin.js"></script>
 
 
 </body>

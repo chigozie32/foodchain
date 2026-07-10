@@ -3,425 +3,397 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FoodChain Admin | Blog Management</title>
-  <link rel="stylesheet" href="css/dashboard.css">
+    <title>FoodChain Admin | Blog Management</title>
+    <link rel="stylesheet" href="css/dashboard.css">
 
-<link rel="stylesheet" href="css/blog.css">
-<link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/admin.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="dashboard">
+    <div class="dashboard">
 
-<!-- ========================================= -->
-<!-- SIDEBAR -->
-<!-- ========================================= -->
+        <!-- ========================================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================================= -->
 
-<aside class="sidebar">
+        <aside class="sidebar">
 
-    <div class="logo">
+            <div class="logo">
 
-        <img src="../assets/images/logo.png" alt="FoodChain">
+                <img src="../assets/images/logo.png" alt="FoodChain">
 
-        <h2>FoodChain</h2>
-
-    </div>
-
-    <ul class="sidebar-menu">
-
-        <a href="dashboard.html">
-            <li>
-                <i class="fa-solid fa-chart-line"></i>
-                Dashboard
-            </li>
-        </a>
-
-        <a href="restaurants.html">
-            <li>
-                <i class="fa-solid fa-store"></i>
-                Restaurants
-            </li>
-        </a>
-
-        <a href="partnerships.html">
-            <li>
-                <i class="fa-solid fa-handshake"></i>
-                Partnership Requests
-            </li>
-        </a>
-
-        <a href="messages.html">
-            <li>
-                <i class="fa-solid fa-envelope"></i>
-                Contact Messages
-            </li>
-        </a>
-
-        <a href="newsletter.html">
-            <li>
-                <i class="fa-solid fa-paper-plane"></i>
-                Newsletter
-            </li>
-        </a>
-
-        <a href="blog.html">
-            <li class="active">
-                <i class="fa-solid fa-newspaper"></i>
-                Blog Management
-            </li>
-        </a>
-
-        <a href="settings.html">
-            <li>
-                <i class="fa-solid fa-gear"></i>
-                Settings
-            </li>
-        </a>
-
-    </ul>
-
-</aside>
-
-<!-- ========================================= -->
-<!-- MAIN CONTENT -->
-<!-- ========================================= -->
-
-<div class="main-content">
-
-<header class="topbar">
-
-    <div class="topbar-left">
-
-        <button class="menu-toggle" id="menuToggle">
-
-            <i class="fas fa-bars"></i>
-
-        </button>
-
-        <h1>Blog</h1>
-
-    </div>
-
-    <div class="topbar-right">
-
-        <div class="notification">
-
-    <i class="fas fa-bell" id="notificationBell"></i>
-
-    <span class="notification-count" id="notificationCount">0</span>
-
-    <div class="notification-dropdown" id="notificationDropdown">
-
-        <h3>Notifications</h3>
-
-        <div class="notification-actions">
-    <button id="markAllReadBtn">
-        ✓ Mark All as Read
-    </button>
-</div>
-
-<div class="notification-actions">
-
-    <button id="showAllBtn">All</button>
-
-    <button id="showUnreadBtn">Unread</button>
-
-</div>
-
-<ul id="notificationList"></ul>
-
-        <ul id="notificationList">
-        </ul>
-
-        <button id="viewAllNotifications">
-
-            View All
-
-        </button>
-
-    </div>
-
-</div>
-
-        <img src="../assets/images/logo.png"
-             alt="Admin">
-
-    </div>
-
-</header>
-
-<!-- Mobile Overlay -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-
-<!-- ========================================= -->
-<!-- BLOG CONTENT -->
-<!-- ========================================= -->
-
-<section class="blog-content">
-
-    <!-- =============================== -->
-    <!-- BLOG STATISTICS -->
-    <!-- =============================== -->
-
-    <div class="stats">
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-
-                <i class="fa-solid fa-newspaper"></i>
+                <h2>FoodChain</h2>
 
             </div>
 
-            <div class="stat-info">
+            <ul class="sidebar-menu">
 
-                <h2 id="totalBlogs">0</h2>
+                <a href="dashboard.html">
+                    <li>
+                        <i class="fa-solid fa-chart-line"></i>
+                        Dashboard
+                    </li>
+                </a>
 
-                <p>Total Articles</p>
+                <a href="restaurants.html">
+                    <li>
+                        <i class="fa-solid fa-store"></i>
+                        Restaurants
+                    </li>
+                </a>
 
-            </div>
+                <a href="partnerships.html">
+                    <li>
+                        <i class="fa-solid fa-handshake"></i>
+                        Partnership Requests
+                    </li>
+                </a>
 
-        </div>
+                <a href="messages.html">
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        Contact Messages
+                    </li>
+                </a>
 
-        <div class="stat-card">
+                <a href="newsletter.html">
+                    <li>
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Newsletter
+                    </li>
+                </a>
 
-            <div class="stat-icon">
+                <a href="blog.html">
+                    <li class="active">
+                        <i class="fa-solid fa-newspaper"></i>
+                        Blog Management
+                    </li>
+                </a>
 
-                <i class="fa-solid fa-eye"></i>
+                <a href="settings.html">
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        Settings
+                    </li>
+                </a>
 
-            </div>
+            </ul>
 
-            <div class="stat-info">
+        </aside>
 
-                <h2 id="publishedBlogs">0</h2>
+        <!-- ========================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ========================================= -->
 
-                <p>Published</p>
+        <div class="main-content">
 
-            </div>
+            <header class="topbar">
 
-        </div>
+                <div class="topbar-left">
 
-        <div class="stat-card">
+                    <button class="menu-toggle" id="menuToggle">
 
-            <div class="stat-icon">
+                        <i class="fas fa-bars"></i>
 
-                <i class="fa-solid fa-layer-group"></i>
+                    </button>
 
-            </div>
-
-            <div class="stat-info">
-
-                <h2 id="totalCategories">0</h2>
-
-                <p>Categories</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =============================== -->
-    <!-- BLOG FORM -->
-    <!-- =============================== -->
-
-    <div class="recent-activity">
-
-        <div class="activity-header">
-
-            <h2>Create Blog Post</h2>
-
-        </div>
-
-        <form id="blogForm">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>Blog Title</label>
-
-                    <input
-                    type="text"
-                    id="blogTitle"
-                    placeholder="Enter blog title"
-                    required>
+                    <h1>Blog</h1>
 
                 </div>
 
-                <div class="form-group">
+                <div class="topbar-right">
 
-                    <label>Category</label>
+                    <div class="notification">
 
-                    <select id="blogCategory" required>
+                        <i class="fas fa-bell" id="notificationBell"></i>
 
-                        <option value="">Select Category</option>
+                        <span class="notification-count" id="notificationCount">0</span>
 
-                        <option>Restaurant</option>
+                        <div class="notification-dropdown" id="notificationDropdown">
 
-                        <option>Business</option>
+                            <h3>Notifications</h3>
 
-                        <option>Delivery</option>
+                            <div class="notification-actions">
+                                <button id="markAllReadBtn">
+                                    ✓ Mark All as Read
+                                </button>
+                            </div>
 
-                        <option>Technology</option>
+                            <div class="notification-actions">
 
-                        <option>Food Tips</option>
+                                <button id="showAllBtn">All</button>
 
-                        <option>News</option>
+                                <button id="showUnreadBtn">Unread</button>
 
-                    </select>
+                            </div>
 
-                </div>
+                            <ul id="notificationList"></ul>
 
-                <div class="form-group">
+                            <ul id="notificationList">
+                            </ul>
 
-                    <label>Author</label>
+                            <button id="viewAllNotifications">
 
-                    <input
-                    type="text"
-                    id="blogAuthor"
-                    placeholder="Author name">
+                                View All
 
-                </div>
+                            </button>
 
-                <div class="form-group">
+                        </div>
 
-                    <label>Reading Time</label>
+                    </div>
 
-                    <input
-                    type="text"
-                    id="readingTime"
-                    placeholder="5 min read">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Featured Image</label>
-
-                    <input
-                    type="file"
-                    id="blogImage"
-                    accept="image/*">
+                    <img src="../assets/images/logo.png" alt="Admin">
 
                 </div>
 
-            </div>
+            </header>
 
-            <div class="image-preview">
+            <!-- Mobile Overlay -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-                <img
-                id="blogPreview"
-                src="../assets/images/image-placeholder.png"
-                alt="Preview">
 
-            </div>
+            <!-- ========================================= -->
+            <!-- BLOG CONTENT -->
+            <!-- ========================================= -->
 
-            <div class="form-group">
+            <section class="blog-content">
 
-                <label>Short Description</label>
+                <!-- =============================== -->
+                <!-- BLOG STATISTICS -->
+                <!-- =============================== -->
 
-                <textarea
-                id="blogDescription"
-                rows="4"
-                placeholder="Short description..."></textarea>
+                <div class="stats">
 
-            </div>
+                    <div class="stat-card">
 
-            <div class="form-group">
+                        <div class="stat-icon">
 
-                <label>Full Article</label>
+                            <i class="fa-solid fa-newspaper"></i>
 
-                <textarea
-                id="blogContent"
-                rows="12"
-                placeholder="Write the full article here..."></textarea>
+                        </div>
 
-            </div>
+                        <div class="stat-info">
 
-            <button
-            type="submit"
-            class="view-all">
+                            <h2 id="totalBlogs">0</h2>
 
-                Publish Blog
+                            <p>Total Articles</p>
 
-            </button>
+                        </div>
 
-        </form>
+                    </div>
 
-    </div>
+                    <div class="stat-card">
 
-    <!-- =============================== -->
-    <!-- BLOG TABLE -->
-    <!-- =============================== -->
+                        <div class="stat-icon">
 
-    <div class="recent-activity">
+                            <i class="fa-solid fa-eye"></i>
 
-        <div class="activity-header">
+                        </div>
 
-            <h2>All Blog Posts</h2>
+                        <div class="stat-info">
 
-            <input
-            type="text"
-            id="searchBlog"
-            placeholder="Search blogs...">
+                            <h2 id="publishedBlogs">0</h2>
+
+                            <p>Published</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-layer-group"></i>
+
+                        </div>
+
+                        <div class="stat-info">
+
+                            <h2 id="totalCategories">0</h2>
+
+                            <p>Categories</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- =============================== -->
+                <!-- BLOG FORM -->
+                <!-- =============================== -->
+
+                <div class="recent-activity">
+
+                    <div class="activity-header">
+
+                        <h2>Create Blog Post</h2>
+
+                    </div>
+
+                    <form id="blogForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label>Blog Title</label>
+
+                                <input type="text" id="blogTitle" placeholder="Enter blog title" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Category</label>
+
+                                <select id="blogCategory" required>
+
+                                    <option value="">Select Category</option>
+
+                                    <option>Restaurant</option>
+
+                                    <option>Business</option>
+
+                                    <option>Delivery</option>
+
+                                    <option>Technology</option>
+
+                                    <option>Food Tips</option>
+
+                                    <option>News</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Author</label>
+
+                                <input type="text" id="blogAuthor" placeholder="Author name">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Reading Time</label>
+
+                                <input type="text" id="readingTime" placeholder="5 min read">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Featured Image</label>
+
+                                <input type="file" id="blogImage" accept="image/*">
+
+                            </div>
+
+                        </div>
+
+                        <div class="image-preview">
+
+                            <img id="blogPreview" src="../assets/images/image-placeholder.png" alt="Preview">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Short Description</label>
+
+                            <textarea id="blogDescription" rows="4" placeholder="Short description..."></textarea>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Full Article</label>
+
+                            <textarea id="blogContent" rows="12"
+                                placeholder="Write the full article here..."></textarea>
+
+                        </div>
+
+                        <button type="submit" class="view-all">
+
+                            Publish Blog
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <!-- =============================== -->
+                <!-- BLOG TABLE -->
+                <!-- =============================== -->
+
+                <div class="recent-activity">
+
+                    <div class="activity-header">
+
+                        <h2>All Blog Posts</h2>
+
+                        <input type="text" id="searchBlog" placeholder="Search blogs...">
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Image</th>
+
+                                    <th>Title</th>
+
+                                    <th>Category</th>
+
+                                    <th>Author</th>
+
+                                    <th>Reading Time</th>
+
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="blogTableBody">
+
+                                <!-- JavaScript will insert blog posts here -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
-        <div class="table-container">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Image</th>
-
-                        <th>Title</th>
-
-                        <th>Category</th>
-
-                        <th>Author</th>
-
-                        <th>Reading Time</th>
-
-                        <th>Actions</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="blogTableBody">
-
-                    <!-- JavaScript will insert blog posts here -->
-
-                </tbody>
-
-            </table>
-
-        </div>
-
     </div>
 
-</section>
-
-</div>
-
-</div>
-
-<script src="js/notifications.js"></script>
-<script src="js/admin.js"></script>
-<script src="js/blog.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/blog.js"></script>
 
 </body>
 

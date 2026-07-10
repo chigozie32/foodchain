@@ -2,289 +2,221 @@
 SETTINGS PAGE
 ==========================================*/
 
-.settings-page{
-
-    padding:35px;
-    max-width:900px;
-    margin:auto;
-
+.settings-page {
+  padding: 35px;
+  max-width: 900px;
+  margin: auto;
 }
 
-.settings-card{
-
-    background:#fff;
-    padding:30px;
-    border-radius:18px;
-    margin-bottom:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.06);
-
+.settings-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
-.settings-card h2{
-
-    margin-bottom:25px;
-    color:#111827;
-    font-size:1.5rem;
-
+.settings-card h2 {
+  margin-bottom: 25px;
+  color: #111827;
+  font-size: 1.5rem;
 }
 
 /*==========================================
 PROFILE IMAGE
 ==========================================*/
 
-.profile-upload{
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-bottom:30px;
-
+.profile-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.profile-upload img{
-
-    width:130px;
-    height:130px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid #ff6b00;
-    margin-bottom:15px;
-
+.profile-upload img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff6b00;
+  margin-bottom: 15px;
 }
 
-.profile-upload input{
-
-    width:100%;
-
+.profile-upload input {
+  width: 100%;
 }
 
 /*==========================================
 FORM
 ==========================================*/
 
-.form-group{
-
-    display:flex;
-    flex-direction:column;
-    margin-bottom:20px;
-
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.form-group label{
-
-    margin-bottom:8px;
-    font-weight:600;
-
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.form-group input{
-
-    padding:14px 16px;
-    border:1px solid #d1d5db;
-    border-radius:12px;
-    font-size:1rem;
-    outline:none;
-    transition:.3s;
-
+.form-group input {
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
 }
 
-.form-group input:focus{
-
-    border-color:#ff6b00;
-    box-shadow:0 0 0 4px rgba(255,107,0,.15);
-
+.form-group input:focus {
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.15);
 }
 
-#passwordStrength{
-
-    margin-top:8px;
-    color:#666;
-    font-size:.9rem;
-
+#passwordStrength {
+  margin-top: 8px;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 /*==========================================
 TOGGLE SWITCH
 ==========================================*/
 
-.toggle-item{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:22px 0;
-
+.toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0;
 }
 
-.switch{
-
-    position:relative;
-    width:60px;
-    height:32px;
-
+.switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
 }
 
-.switch input{
-
-    display:none;
-
+.switch input {
+  display: none;
 }
 
-.slider{
-
-    position:absolute;
-    inset:0;
-    background:#ccc;
-    border-radius:50px;
-    transition:.3s;
-    cursor:pointer;
-
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 50px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.slider::before{
-
-    content:"";
-    position:absolute;
-    width:24px;
-    height:24px;
-    left:4px;
-    top:4px;
-    background:#fff;
-    border-radius:50%;
-    transition:.3s;
-
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 4px;
+  top: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
 }
 
-.switch input:checked + .slider{
-
-    background:#ff6b00;
-
+.switch input:checked + .slider {
+  background: #ff6b00;
 }
 
-.switch input:checked + .slider::before{
-
-    transform:translateX(28px);
-
+.switch input:checked + .slider::before {
+  transform: translateX(28px);
 }
 
 /*==========================================
 BUTTONS
 ==========================================*/
 
-.settings-actions{
-
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-
+.settings-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .save-btn,
-.reset-btn{
-
-    flex:1;
-    padding:16px;
-    border:none;
-    border-radius:12px;
-    font-size:1rem;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-
+.reset-btn {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.save-btn{
-
-    background:#ff6b00;
-    color:#fff;
-
+.save-btn {
+  background: #ff6b00;
+  color: #fff;
 }
 
-.save-btn:hover{
-
-    background:#e55d00;
-
+.save-btn:hover {
+  background: #e55d00;
 }
 
-.reset-btn{
-
-    background:#e5e7eb;
-
+.reset-btn {
+  background: #e5e7eb;
 }
 
-.reset-btn:hover{
-
-    background:#d1d5db;
-
+.reset-btn:hover {
+  background: #d1d5db;
 }
 
 /*==========================================
 RESPONSIVE
 ==========================================*/
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 20px;
+  }
 
-    .settings-page{
+  .settings-card {
+    padding: 20px;
+  }
 
-        padding:20px;
-
-    }
-
-    .settings-card{
-
-        padding:20px;
-
-    }
-
-    .settings-actions{
-
-        flex-direction:column;
-
-    }
-
+  .settings-actions {
+    flex-direction: column;
+  }
 }
 
 /*==============================
 DARK MODE
 ==============================*/
 
-body.dark-mode{
-
-    background:#121212;
-    color:#ffffff;
-
+body.dark-mode {
+  background: #121212;
+  color: #ffffff;
 }
 
-body.dark-mode .settings-card{
-
-    background:#1f1f1f;
-    color:#ffffff;
-
+body.dark-mode .settings-card {
+  background: #1f1f1f;
+  color: #ffffff;
 }
 
-body.dark-mode .settings-card h2{
-
-    color:#ffffff;
-
+body.dark-mode .settings-card h2 {
+  color: #ffffff;
 }
 
-body.dark-mode label{
-
-    color:#dddddd;
-
+body.dark-mode label {
+  color: #dddddd;
 }
 
-body.dark-mode input{
-
-    background:#2a2a2a;
-    color:#ffffff;
-    border:1px solid #555;
-
+body.dark-mode input {
+  background: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #555;
 }
 
-body.dark-mode .topbar{
-
-    background:#1f1f1f;
-    color:#ffffff;
-
+body.dark-mode .topbar {
+  background: #1f1f1f;
+  color: #ffffff;
 }
