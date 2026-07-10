@@ -83,6 +83,12 @@ app.post("/newsletter", async (req, res) => {
             email
         });
 
+        await Notification.create({
+    message: `New newsletter subscriber: ${email}`,
+    link: "newsletter.html",
+    read: false
+});
+
         res.json({
             success: true,
             message: "Subscribed successfully!"
@@ -168,6 +174,12 @@ app.post("/contact", async (req, res) => {
     try {
 
         const message = await Message.create(req.body);
+
+        await Notification.create({
+    message: `New contact message from ${message.name}`,
+    link: "messages.html",
+    read: false
+});
 
         res.json({
             success: true,
@@ -303,6 +315,11 @@ app.post("/partnership", async (req, res) => {
     try {
 
         const partner = await Partnership.create(req.body);
+        await Notification.create({
+    message: `New partnership request from ${partner.businessName}`,
+    link: "partnership.html",
+    read: false
+});
 
         res.json({
             success: true,

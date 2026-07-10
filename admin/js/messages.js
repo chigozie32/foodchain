@@ -270,6 +270,7 @@ INITIALIZE
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
+    loadNotifications();
     loadMessages();
 
 });

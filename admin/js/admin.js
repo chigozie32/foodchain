@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Load admin settings
-fetch("https://foodchain-api.onrender.com/api/admin/settings")
+fetch("https://foodchain-api.onrender.com/admin/profile")
     .then(res => res.json())
     .then(admin => {
 
@@ -343,108 +343,80 @@ document.addEventListener("DOMContentLoaded", () => {
 LOAD NOTIFICATIONS
 ==========================================*/
 
-function loadNotifications() {
+async function loadNotifications() {
 
-    const list =
-        document.getElementById("notificationList");
-
-    const badge =
-        document.getElementById("notificationCount");
+    const list = document.getElementById("notificationList");
+    const badge = document.getElementById("notificationCount");
 
     if (!list || !badge) return;
 
-    const notifications = getNotifications();
+    const notifications = await getNotifications();
 
     list.innerHTML = "";
 
     if (notifications.length === 0) {
-
-        list.innerHTML =
-            "<li>No notifications yet.</li>";
-
+        list.innerHTML = "<li>No notifications yet.</li>";
         badge.textContent = "0";
-
         return;
-
     }
 
     let unread = 0;
 
-notifications
-.filter(notification => {
-    if (currentFilter === "unread") {
-        return !notification.read;
-    }
-    return true;
-})
-.forEach(notification => {
+    notifications
+        .filter(notification => {
+            if (currentFilter === "unread") {
+                return !notification.read;
+            }
+            return true;
+        })
+        .forEach(notification => {
 
-        if (!notification.read) unread++;
+            if (!notification.read) unread++;
 
-        const li = document.createElement("li");
+            const li = document.createElement("li");
 
-        if (!notification.read) {
-    li.classList.add("unread");
-}
+            if (!notification.read) {
+                li.classList.add("unread");
+            }
 
-li.innerHTML = `
-    <div class="notification-item">
+            li.innerHTML = `
+                <div class="notification-item">
+                    <div>
+                        <strong>${notification.message}</strong><br>
+                        <small>${timeAgo(notification.date)}</small>
+                    </div>
 
-        <div>
+                    <button class="delete-notification">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
 
-            <strong>${notification.message}</strong><br>
+            // Delete notification
+            li.querySelector(".delete-notification").addEventListener("click", async (e) => {
 
-            <small>${timeAgo(notification.date)}</small>
+                e.stopPropagation();
 
-        </div>
+                await deleteNotification(notification._id);
 
-        <button class="delete-notification">
+                loadNotifications();
 
-            <i class="fas fa-trash"></i>
+            });
 
-        </button>
+            // Open notification
+            li.addEventListener("click", async () => {
 
-    </div>
-`;
+                notification.read = true;
 
-const deleteButton = li.querySelector(".delete-notification");
+                if (notification.link) {
+                    window.location.href = notification.link;
+                }
 
-deleteButton.addEventListener('click', (e) => {
+            });
 
-    e.stopPropagation();
+            list.appendChild(li);
 
-    // 1. Get full list
-    let notifications = getNotifications();
-
-    // 2. Find index properly
-    const index = notifications.indexOf(notification);
-
-    // 3. Remove from array
-    notifications.splice(index, 1);
-
-    // 4. SAVE UPDATED ARRAY (MOST IMPORTANT STEP)
-    saveNotifications(notifications);
-
-    // 5. Reload UI
-    loadNotifications();
-    
-});
-
-li.addEventListener("click", () => {
-
-    notification.read = true;
-
-    saveNotifications(notifications);
-
-    loadNotifications();
-
-    window.location.href = notification.link;
-
-});
-
-        list.appendChild(li);
-
-    });
+        });
 
     badge.textContent = unread;
 
@@ -453,58 +425,52 @@ li.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", loadNotifications);
 
 
-function markAllAsRead() {
+// Mark all as read
+async function markAllAsRead() {
 
-    const notifications = getNotifications();
-
-    notifications.forEach(notification => {
-
-        notification.read = true;
-
+    await fetch(`${API_URL}/read-all`, {
+        method: "PUT"
     });
-
-    saveNotifications(notifications);
 
     loadNotifications();
 
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const showAllBtn = document.getElementById("showAllBtn");
-const showUnreadBtn = document.getElementById("showUnreadBtn");
+    const showUnreadBtn = document.getElementById("showUnreadBtn");
 
-if (showAllBtn) {
-    showAllBtn.addEventListener("click", () => {
-        currentFilter = "all";
-        loadNotifications();
-    });
-}
+    if (showAllBtn) {
+        showAllBtn.addEventListener("click", () => {
+            currentFilter = "all";
+            loadNotifications();
+        });
+    }
 
-if (showUnreadBtn) {
-    showUnreadBtn.addEventListener("click", () => {
-        currentFilter = "unread";
-        loadNotifications();
-    });
-}
+    if (showUnreadBtn) {
+        showUnreadBtn.addEventListener("click", () => {
+            currentFilter = "unread";
+            loadNotifications();
+        });
+    }
 
-    const markAllReadBtn =
-        document.getElementById("markAllReadBtn");
+    const markAllReadBtn = document.getElementById("markAllReadBtn");
 
     if (markAllReadBtn) {
 
-        markAllReadBtn.addEventListener("click", (e) => {
+        markAllReadBtn.addEventListener("click", async (e) => {
 
             e.preventDefault();
 
-            markAllAsRead();
+            await markAllAsRead();
 
         });
 
     }
 
 });
-
 
 function timeAgo(dateString) {
 

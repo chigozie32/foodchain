@@ -235,6 +235,8 @@ NOTIFICATIONS
   display: none;
 
   z-index: 9999;
+
+  color: rgb(92, 62, 62);
 }
 
 .notification-dropdown.active {
@@ -459,5 +461,28 @@ NOTIFICATION RESPONSIVE
     min-width: 90px;
     font-size: 12px;
     padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-dropdown {
+    width: calc(100vw - 20px);
+    right: 10px;
+    left: auto;
+  }
+
+  .notification-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notification-item strong {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .notification-item small {
+    font-size: 12px;
   }
 }
