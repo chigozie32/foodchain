@@ -136,11 +136,7 @@ if (notificationBell && notificationDropdown) {
 }
 
 
-let currentFilter = "all";
 
-/*==========================================
-NOTIFICATION STORAGE
-==========================================*/
 /*==========================================
 NOTIFICATIONS (MongoDB)
 ==========================================*/
