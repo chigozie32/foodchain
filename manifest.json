@@ -2,10 +2,11 @@
   "name": "FoodChain",
   "short_name": "FoodChain",
 
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/foodchain",
+  "scope": "/foodchain",
 
   "display": "standalone",
+  "display_override": "standalone",
 
   "background_color": "#ffffff",
   "theme_color": "#0B8F4D",

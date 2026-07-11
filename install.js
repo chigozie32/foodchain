@@ -140,3 +140,24 @@ if (closeInstallPopup) {
     });
 
 }
+
+/*==========================================
+HIDE POPUP IF APP IS ALREADY INSTALLED
+==========================================*/
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const installPopup =
+        document.getElementById("installPopup");
+
+    const installed =
+        window.matchMedia("(display-mode: standalone").matches ||
+        window.navigator.standalone === true;
+
+    if (installed && installPopup) {
+
+        installPopup.style.display = "none";
+
+    }
+
+});
