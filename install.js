@@ -14,10 +14,14 @@ window.addEventListener("beforeinstallprompt", (e) => {
 
     if (installButton) {
 
-        installButton.style.display = "inline-flex";
+        const installPopup = document.getElementById("installPopup");
 
-    }
+    if (installPopup) {
 
+        installPopup.style.display = "block";
+
+}
+}
 });
 
 window.addEventListener("appinstalled", () => {
@@ -26,11 +30,19 @@ window.addEventListener("appinstalled", () => {
 
     deferredPrompt = null;
 
-    if (installButton) {
+    const installPopup = document.getElementById("installPopup");
 
-        installButton.style.display = "none";
+if (installPopup) {
 
-    }
+    const installPopup = document.getElementById("installPopup");
+
+if (installPopup) {
+
+    installPopup.style.display = "none";
+
+}
+
+}
 
 });
 
@@ -52,7 +64,13 @@ if (installButton) {
 
         deferredPrompt = null;
 
-        installButton.style.display = "none";
+        const installPopup = document.getElementById("installPopup");
+
+if (installPopup) {
+
+    installPopup.style.display = "none";
+
+}
 
     });
 
@@ -78,6 +96,19 @@ if ("serviceWorker" in navigator) {
                 console.error(error);
 
             });
+
+    });
+
+}
+
+const closeInstallPopup =
+document.getElementById("closeInstallPopup");
+
+if (closeInstallPopup) {
+
+    closeInstallPopup.addEventListener("click", () => {
+
+        document.getElementById("installPopup").style.display = "none";
 
     });
 
