@@ -2516,3 +2516,41 @@ MOBILE
     cursor: pointer;
   }
 }
+
+@media (max-width: 768px) {
+  #closeInstallPopup {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .install-popup {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .install-popup img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .install-content {
+    width: 100%;
+  }
+
+  .install-content h3 {
+    font-size: 16px;
+  }
+
+  .install-content p {
+    font-size: 13px;
+  }
+
+  .install-now {
+    width: 100%;
+    margin: 0;
+  }
+}

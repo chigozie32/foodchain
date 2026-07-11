@@ -6,46 +6,83 @@ let deferredPrompt = null;
 
 const installButton = document.getElementById("installButton");
 
-window.addEventListener("beforeinstallprompt", (e) => {
+// Hide install UI by default
+if (installButton) {
+    installButton.style.display = "none";
+}
 
-    e.preventDefault();
+// Detect if app is already installed
+const isInstalled =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
 
-    deferredPrompt = e;
+if (isInstalled) {
 
-    if (installButton) {
+    // Hide install popup completely
+    const installPopup = document.getElementById("installPopup");
+
+    if (installPopup) {
+        installPopup.style.display = "none";
+    }
+
+} else {
+
+    // Show install prompt only when browser allows it
+    window.addEventListener("beforeinstallprompt", (e) => {
+
+        e.preventDefault();
+
+        deferredPrompt = e;
 
         const installPopup = document.getElementById("installPopup");
 
-    if (installPopup) {
+        if (installPopup) {
+            installPopup.style.display = "flex";
+        }
 
-        installPopup.style.display = "block";
+        if (installButton) {
+            installButton.style.display = "inline-flex";
+        }
+
+    });
 
 }
-}
-});
 
 window.addEventListener("appinstalled", () => {
 
-    console.log("FoodChain installed.");
-
     deferredPrompt = null;
 
-    const installPopup = document.getElementById("installPopup");
+    const installPopup =
+        document.getElementById("installPopup");
 
-if (installPopup) {
-
-    const installPopup = document.getElementById("installPopup");
-
-if (installPopup) {
-
-    installPopup.style.display = "none";
-
-}
-
-}
+    if (installPopup) {
+        installPopup.style.display = "none";
+    }
 
 });
 
+/*==========================================
+CLOSE INSTALL POPUP (MOBILE)
+==========================================*/
+
+const installPopup =
+document.getElementById("installPopup");
+
+if (installPopup) {
+
+    document.addEventListener("click", (e) => {
+
+        // Only on phones
+        if (window.innerWidth > 768) return;
+
+        // Don't close if user clicked inside popup
+        if (installPopup.contains(e.target)) return;
+
+        installPopup.style.display = "none";
+
+    });
+
+}
 /*==========================================
 INSTALL BUTTON
 ==========================================*/
