@@ -262,27 +262,23 @@ TIME AGO
 
 function timeAgo(dateString) {
 
-    const now = new Date();
-    const past = new Date(dateString);
+    const now = new Date().getTime();
+    const past = new Date(dateString).getTime();
 
     const diff = Math.floor((now - past) / 1000);
 
     if (diff < 60) return `${diff} seconds ago`;
 
     const minutes = Math.floor(diff / 60);
-
-    if (minutes < 60) return `${minutes} minutes ago`;
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
 
     const hours = Math.floor(minutes / 60);
-
-    if (hours < 24) return `${hours} hours ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
 
     const days = Math.floor(hours / 24);
-
-    return `${days} days ago`;
+    return `${days} day${days > 1 ? "s" : ""} ago`;
 
 }
-
 /*------------------------------------------
 EVENTS
 ------------------------------------------*/

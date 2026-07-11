@@ -130,14 +130,14 @@ if (newsletterForm) {
 
             const data = await response.json();
 
-            if (typeof addNotification === "function") {
+            // if (typeof addNotification === "function") {
 
-                addNotification(
-                    `New newsletter subscriber: ${email}`,
-                    "newsletter.html"
-                );
+            //     addNotification(
+            //         `New newsletter subscriber: ${email}`,
+            //         "newsletter.html"
+            //     );
 
-            }
+            // }
 
             alert(data.message);
 
@@ -427,19 +427,19 @@ if (partnerForm) {
 
             );
 
-            const data = await response.json();
+//             const data = await response.json();
 
-            if (typeof addNotification === "function") {
+//             if (typeof addNotification === "function") {
 
-    await addNotification(
+//     await addNotification(
 
-        `New partnership request from ${partner.restaurant}`,
+//         `New partnership request from ${partner.restaurant}`,
 
-        "partnerships.html"
+//         "partnerships.html"
 
-    );
+//     );
 
-}
+// }
 
             localStorage.removeItem("partnerDraft");
 
