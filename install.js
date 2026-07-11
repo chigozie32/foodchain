@@ -4,78 +4,52 @@ FOODCHAIN INSTALL APP
 
 let deferredPrompt = null;
 
+const installPopup = document.getElementById("installPopup");
 const installButton = document.getElementById("installButton");
+const closeInstallPopup = document.getElementById("closeInstallPopup");
 
-// Hide install UI by default
-if (installButton) {
-    installButton.style.display = "none";
-}
+/*------------------------------------------
+CHECK IF APP IS ALREADY INSTALLED
+------------------------------------------*/
 
-// Detect if app is already installed
-window.addEventListener("beforeinstallprompt", (e) => {
+const isInstalled =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
 
-    // Already installed? Never show popup.
-    if (
-        window.matchMedia("(display-mode: standalone)").matches ||
-        window.navigator.standalone === true
-    ) {
-        return;
-    }
-
-    e.preventDefault();
-
-    deferredPrompt = e;
-
-    const installPopup = document.getElementById("installPopup");
-
-    if (installPopup) {
-        installPopup.style.display = "flex";
-    }
-
-    if (installButton) {
-        installButton.style.display = "inline-flex";
-    }
-
-});
-
-window.addEventListener("appinstalled", () => {
-
-    deferredPrompt = null;
-
-    const installPopup =
-        document.getElementById("installPopup");
+// Hide everything if already installed
+if (isInstalled) {
 
     if (installPopup) {
         installPopup.style.display = "none";
     }
 
-});
+} else {
 
-/*==========================================
-CLOSE INSTALL POPUP (MOBILE)
-==========================================*/
+    /*------------------------------------------
+    INSTALL PROMPT
+    ------------------------------------------*/
 
-const installPopup =
-document.getElementById("installPopup");
+    window.addEventListener("beforeinstallprompt", (e) => {
 
-if (installPopup) {
+        e.preventDefault();
 
-    document.addEventListener("click", (e) => {
+        deferredPrompt = e;
 
-        // Only on phones
-        if (window.innerWidth > 768) return;
+        if (installPopup) {
+            installPopup.style.display = "flex";
+        }
 
-        // Don't close if user clicked inside popup
-        if (installPopup.contains(e.target)) return;
-
-        installPopup.style.display = "none";
+        if (installButton) {
+            installButton.style.display = "inline-flex";
+        }
 
     });
 
 }
-/*==========================================
+
+/*------------------------------------------
 INSTALL BUTTON
-==========================================*/
+------------------------------------------*/
 
 if (installButton) {
 
@@ -85,79 +59,78 @@ if (installButton) {
 
         deferredPrompt.prompt();
 
-        const { outcome } = await deferredPrompt.userChoice;
-
-        console.log("Install result:", outcome);
+        await deferredPrompt.userChoice;
 
         deferredPrompt = null;
 
-        const installPopup = document.getElementById("installPopup");
-
-if (installPopup) {
-
-    installPopup.style.display = "none";
-
-}
+        if (installPopup) {
+            installPopup.style.display = "none";
+        }
 
     });
 
 }
 
+/*------------------------------------------
+APP INSTALLED
+------------------------------------------*/
 
-/*==========================================
+window.addEventListener("appinstalled", () => {
+
+    deferredPrompt = null;
+
+    if (installPopup) {
+        installPopup.style.display = "none";
+    }
+
+});
+
+/*------------------------------------------
+CLOSE POPUP ON MOBILE
+------------------------------------------*/
+
+if (installPopup) {
+
+    document.addEventListener("click", (e) => {
+
+        if (window.innerWidth > 768) return;
+
+        if (installPopup.contains(e.target)) return;
+
+        installPopup.style.display = "none";
+
+    });
+
+}
+
+/*------------------------------------------
+CLOSE BUTTON
+------------------------------------------*/
+
+if (closeInstallPopup) {
+
+    closeInstallPopup.addEventListener("click", () => {
+
+        if (installPopup) {
+            installPopup.style.display = "none";
+        }
+
+    });
+
+}
+
+/*------------------------------------------
 REGISTER SERVICE WORKER
-==========================================*/
+------------------------------------------*/
 
 if ("serviceWorker" in navigator) {
 
     window.addEventListener("load", () => {
 
         navigator.serviceWorker.register("service-worker.js")
-            .then(() => {
-
-                console.log("Service Worker Registered");
-
-            })
-            .catch((error) => {
-
-                console.error(error);
-
-            });
+            .then(() => console.log("Service Worker Registered"))
+            .catch(err => console.error(err));
 
     });
 
 }
-
-const closeInstallPopup =
-document.getElementById("closeInstallPopup");
-
-if (closeInstallPopup) {
-
-    closeInstallPopup.addEventListener("click", () => {
-
-        document.getElementById("installPopup").style.display = "none";
-
-    });
-
-}
-
-/*==========================================
-HIDE POPUP IF APP IS ALREADY INSTALLED
-==========================================*/
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    const installPopup =
-        document.getElementById("installPopup");
-
-    const installed =
-        window.matchMedia("(display-mode: standalone").matches ||
-        window.navigator.standalone === true;
-
-    if (installed && installPopup) {
-
-        installPopup.style.display = "none";
-
-    }
-
-});
