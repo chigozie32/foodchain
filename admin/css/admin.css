@@ -216,15 +216,21 @@ NOTIFICATIONS
 }
 
 .notification-dropdown {
-  position: absolute;
+  position: fixed;
 
-  top: 45px;
+  top: 70px;
 
-  right: 0;
+  left: 10px;
 
-  width: 340px;
+  right: 10px;
 
-  background: #ffffff;
+  width: auto;
+
+  max-width: 420px;
+
+  margin: auto;
+
+  background: #fff;
 
   border-radius: 15px;
 
@@ -235,8 +241,6 @@ NOTIFICATIONS
   display: none;
 
   z-index: 9999;
-
-  color: rgb(92, 62, 62);
 }
 
 .notification-dropdown.active {
@@ -484,5 +488,43 @@ NOTIFICATION RESPONSIVE
 
   .notification-item small {
     font-size: 12px;
+  }
+}
+.notification-dropdown {
+  position: fixed;
+
+  top: 70px;
+
+  left: 10px;
+
+  right: 10px;
+
+  width: auto;
+
+  max-width: 420px;
+
+  margin: auto;
+
+  background: #fff;
+
+  border-radius: 15px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+  padding: 20px;
+
+  display: none;
+
+  z-index: 9999;
+}
+@media (max-width: 463px) {
+  .notification-dropdown {
+    left: 8px;
+
+    right: 8px;
+
+    max-width: none;
+
+    width: auto;
   }
 }

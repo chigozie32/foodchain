@@ -880,6 +880,7 @@ app.put("/blogs/:id/unfeature", async (req, res) => {
 
 });
 
+
 /*==========================================
 NOTIFICATIONS (MongoDB)
 ==========================================*/
@@ -983,6 +984,31 @@ app.delete("/notifications/:id", async (req, res) => {
 
 });
 
+// Mark one notification as read
+app.put("/notifications/:id/read", async (req, res) => {
+
+    try {
+
+        await Notification.findByIdAndUpdate(
+            req.params.id,
+            { read: true }
+        );
+
+        res.json({
+            success: true
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false
+        });
+
+    }
+
+});
 
 /*==========================================
 ADMIN AUTH & SETTINGS
@@ -1254,6 +1280,9 @@ app.put("/admin/password", async (req, res) => {
     }
 
 });
+
+
+
 
 /*==========================================
 SERVER

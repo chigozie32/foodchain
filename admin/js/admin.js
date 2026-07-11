@@ -105,18 +105,14 @@ if (overlay) {
 NOTIFICATION DROPDOWN
 ==========================================*/
 
-const notificationBell =
-    document.getElementById("notificationBell");
-
-const notificationDropdown =
-    document.getElementById("notificationDropdown");
+const notificationBell = document.getElementById("notificationBell");
+const notificationDropdown = document.getElementById("notificationDropdown");
 
 if (notificationBell && notificationDropdown) {
 
     notificationBell.addEventListener("click", function (e) {
 
         e.stopPropagation();
-
         notificationDropdown.classList.toggle("active");
 
     });
@@ -136,12 +132,17 @@ if (notificationBell && notificationDropdown) {
 }
 
 
-
 /*==========================================
 NOTIFICATIONS (MongoDB)
 ==========================================*/
 
+// const API_URL = "https://foodchain-api.onrender.com";
+
 let currentFilter = "all";
+
+/*------------------------------------------
+LOAD NOTIFICATIONS
+------------------------------------------*/
 
 async function loadNotifications() {
 
@@ -152,115 +153,116 @@ async function loadNotifications() {
 
     try {
 
-        let notifications = await getNotifications();
+        const notifications = await getNotifications();
 
         list.innerHTML = "";
 
-        if (!notifications.length) {
+        if (notifications.length === 0) {
 
-            list.innerHTML = "<li>No notifications yet.</li>";
             badge.textContent = "0";
+            list.innerHTML = "<li>No notifications yet.</li>";
             return;
 
         }
 
-        let unread = 0;
-
-        notifications
-        .filter(notification => {
+        const filtered = notifications.filter(notification => {
 
             if (currentFilter === "unread") {
-
                 return !notification.read;
-
             }
 
             return true;
 
-        })
-        .forEach(notification => {
+        });
 
-            if (!notification.read) unread++;
+        const unreadCount = notifications.filter(n => !n.read).length;
+
+        badge.textContent = unreadCount;
+
+        filtered.forEach(notification => {
 
             const li = document.createElement("li");
 
             if (!notification.read) {
-
                 li.classList.add("unread");
-
             }
 
             li.innerHTML = `
-
                 <div class="notification-item">
-
                     <div>
-
                         <strong>${notification.message}</strong><br>
-
                         <small>${timeAgo(notification.createdAt)}</small>
-
                     </div>
 
                     <button class="delete-notification">
-
                         <i class="fas fa-trash"></i>
-
                     </button>
-
                 </div>
-
             `;
 
-            li.querySelector(".delete-notification")
-            .addEventListener("click", async (e) => {
+            li.querySelector(".delete-notification").addEventListener("click", async (e) => {
 
-                e.stopPropagation();
+    e.stopPropagation();
 
-                await deleteNotification(notification._id);
+    await deleteNotification(notification._id);
 
-                loadNotifications();
+    loadNotifications();
 
-            });
+});
 
-            li.addEventListener("click", async () => {
+li.addEventListener("click", async () => {
 
-                await fetch("https://foodchain-api.onrender.com/notifications/read-all", {
+    if (!notification.read) {
 
-                    method: "PUT"
+        await fetch(
+            `https://foodchain-api.onrender.com/notifications/${notification._id}/read`,
+            {
+                method: "PUT"
+            }
+        );
 
-                });
+        // Update local object immediately
+        notification.read = true;
 
-                loadNotifications();
+        // Remove highlight immediately
+        li.classList.remove("unread");
 
-                if (notification.link) {
+        // Reduce badge immediately
+        const badge = document.getElementById("notificationCount");
 
-                    window.location.href = notification.link;
+        let count = parseInt(badge.textContent) || 0;
 
-                }
+        if (count > 0) {
+            badge.textContent = count - 1;
+        }
 
-            });
+    }
+
+    if (notification.link) {
+        window.location.href = notification.link;
+    }
+
+});
 
             list.appendChild(li);
 
         });
 
-        badge.textContent = unread;
+    } catch (error) {
 
-    }
-
-    catch (error) {
-
-        console.error(error);
+        console.error("Notification error:", error);
 
     }
 
 }
 
+/*------------------------------------------
+TIME AGO
+------------------------------------------*/
+
 function timeAgo(dateString) {
 
     const now = new Date();
-
     const past = new Date(dateString);
 
     const diff = Math.floor((now - past) / 1000);
@@ -281,29 +283,17 @@ function timeAgo(dateString) {
 
 }
 
+/*------------------------------------------
+EVENTS
+------------------------------------------*/
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadNotifications();
 
-    const markAllReadBtn = document.getElementById("markAllReadBtn");
-
-    if (markAllReadBtn) {
-
-        markAllReadBtn.addEventListener("click", async (e) => {
-
-            e.preventDefault();
-
-            await markAllAsRead();
-
-            loadNotifications();
-
-        });
-
-    }
-
     const allBtn = document.getElementById("showAllBtn");
-
     const unreadBtn = document.getElementById("showUnreadBtn");
+    const markAllReadBtn = document.getElementById("markAllReadBtn");
 
     if (allBtn) {
 
@@ -312,7 +302,6 @@ document.addEventListener("DOMContentLoaded", () => {
             currentFilter = "all";
 
             allBtn.classList.add("active");
-
             unreadBtn?.classList.remove("active");
 
             loadNotifications();
@@ -328,7 +317,6 @@ document.addEventListener("DOMContentLoaded", () => {
             currentFilter = "unread";
 
             unreadBtn.classList.add("active");
-
             allBtn?.classList.remove("active");
 
             loadNotifications();
@@ -337,134 +325,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
-
-/*==========================================
-LOAD NOTIFICATIONS
-==========================================*/
-
-async function loadNotifications() {
-
-    const list = document.getElementById("notificationList");
-    const badge = document.getElementById("notificationCount");
-
-    if (!list || !badge) return;
-
-    const notifications = await getNotifications();
-
-    list.innerHTML = "";
-
-    if (notifications.length === 0) {
-        list.innerHTML = "<li>No notifications yet.</li>";
-        badge.textContent = "0";
-        return;
-    }
-
-    let unread = 0;
-
-    notifications
-        .filter(notification => {
-            if (currentFilter === "unread") {
-                return !notification.read;
-            }
-            return true;
-        })
-        .forEach(notification => {
-
-            if (!notification.read) unread++;
-
-            const li = document.createElement("li");
-
-            if (!notification.read) {
-                li.classList.add("unread");
-            }
-
-            li.innerHTML = `
-                <div class="notification-item">
-                    <div>
-                        <strong>${notification.message}</strong><br>
-                        <small>${timeAgo(notification.date)}</small>
-                    </div>
-
-                    <button class="delete-notification">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-
-            // Delete notification
-            li.querySelector(".delete-notification").addEventListener("click", async (e) => {
-
-                e.stopPropagation();
-
-                await deleteNotification(notification._id);
-
-                loadNotifications();
-
-            });
-
-            // Open notification
-            li.addEventListener("click", async () => {
-
-                notification.read = true;
-
-                if (notification.link) {
-                    window.location.href = notification.link;
-                }
-
-            });
-
-            list.appendChild(li);
-
-        });
-
-    badge.textContent = unread;
-
-}
-
-document.addEventListener("DOMContentLoaded", loadNotifications);
-
-
-// Mark all as read
-async function markAllAsRead() {
-
-    await fetch(`${API_URL}/read-all`, {
-        method: "PUT"
-    });
-
-    loadNotifications();
-
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const showAllBtn = document.getElementById("showAllBtn");
-    const showUnreadBtn = document.getElementById("showUnreadBtn");
-
-    if (showAllBtn) {
-        showAllBtn.addEventListener("click", () => {
-            currentFilter = "all";
-            loadNotifications();
-        });
-    }
-
-    if (showUnreadBtn) {
-        showUnreadBtn.addEventListener("click", () => {
-            currentFilter = "unread";
-            loadNotifications();
-        });
-    }
-
-    const markAllReadBtn = document.getElementById("markAllReadBtn");
-
     if (markAllReadBtn) {
 
         markAllReadBtn.addEventListener("click", async (e) => {
 
             e.preventDefault();
 
-            await markAllAsRead();
+            await fetch("https://foodchain-api.onrender.com/notifications/read-all", {
+                method: "PUT"
+            });
+
+            loadNotifications();
 
         });
 
@@ -472,50 +343,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function timeAgo(dateString) {
+/*------------------------------------------
+DELETE NOTIFICATION
+------------------------------------------*/
 
-    const now = new Date();
-    const past = new Date(dateString);
+async function deleteNotification(id) {
 
-    const diff = Math.floor((now - past) / 1000);
+    try {
 
-    if (diff < 60) return `${diff} seconds ago`;
+        await fetch(
+            `https://foodchain-api.onrender.com/notifications/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
 
-    const minutes = Math.floor(diff / 60);
-    if (minutes < 60) return `${minutes} minutes ago`;
+    } catch (error) {
 
-    const hours = Math.floor(minutes / 60);
-    if (hours < 24) return `${hours} hours ago`;
+        console.error(error);
 
-    const days = Math.floor(hours / 24);
-    return `${days} days ago`;
+    }
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+/*------------------------------------------
+GET NOTIFICATIONS
+------------------------------------------*/
 
-    const allBtn = document.getElementById("showAllBtn");
-    const unreadBtn = document.getElementById("showUnreadBtn");
+async function getNotifications() {
+    const response = await fetch(
+        "https://foodchain-api.onrender.com/notifications"
+    );
 
-    if (!allBtn || !unreadBtn) return;
-
-    allBtn.addEventListener("click", () => {
-
-        allBtn.classList.add("active");
-        unreadBtn.classList.remove("active");
-
-        currentFilter = "all";
-        loadNotifications();
-
-    });
-
-    unreadBtn.addEventListener("click", () => {
-
-        unreadBtn.classList.add("active");
-        allBtn.classList.remove("active");
-
-        currentFilter = "unread";
-        loadNotifications();
-
-    });
-
-});
+    return await response.json();
+}
