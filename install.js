@@ -12,41 +12,31 @@ if (installButton) {
 }
 
 // Detect if app is already installed
-const isInstalled =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone === true;
+window.addEventListener("beforeinstallprompt", (e) => {
 
-if (isInstalled) {
+    // Already installed? Never show popup.
+    if (
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true
+    ) {
+        return;
+    }
 
-    // Hide install popup completely
+    e.preventDefault();
+
+    deferredPrompt = e;
+
     const installPopup = document.getElementById("installPopup");
 
     if (installPopup) {
-        installPopup.style.display = "none";
+        installPopup.style.display = "flex";
     }
 
-} else {
+    if (installButton) {
+        installButton.style.display = "inline-flex";
+    }
 
-    // Show install prompt only when browser allows it
-    window.addEventListener("beforeinstallprompt", (e) => {
-
-        e.preventDefault();
-
-        deferredPrompt = e;
-
-        const installPopup = document.getElementById("installPopup");
-
-        if (installPopup) {
-            installPopup.style.display = "flex";
-        }
-
-        if (installButton) {
-            installButton.style.display = "inline-flex";
-        }
-
-    });
-
-}
+});
 
 window.addEventListener("appinstalled", () => {
 
