@@ -112,14 +112,14 @@ if (contactForm) {
     })
     .then(async data => {
         // 3. Execution Only Happens on Verified Network Success
-        if (typeof addNotification === "function") {
+//         if (typeof addNotification === "function") {
 
-    await addNotification(
-        `New contact message from ${fullName}`,
-        "messages.html"
-    );
+//     await addNotification(
+//         `New contact message from ${fullName}`,
+//         "messages.html"
+//     );
 
-}
+// }
 
         fields.forEach(id => {
             localStorage.removeItem(id);
