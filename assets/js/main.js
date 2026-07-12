@@ -427,19 +427,19 @@ if (partnerForm) {
 
             );
 
-//             const data = await response.json();
+            const data = await response.json();
 
-//             if (typeof addNotification === "function") {
+            if (typeof addNotification === "function") {
 
-//     await addNotification(
+    await addNotification(
 
-//         `New partnership request from ${partner.restaurant}`,
+        `New partnership request from ${partner.restaurant}`,
 
-//         "partnerships.html"
+        "partnerships.html"
 
-//     );
+    );
 
-// }
+}
 
             localStorage.removeItem("partnerDraft");
 
@@ -559,27 +559,31 @@ FAQ ACCORDION
 
 const faqItems = document.querySelectorAll(".faq-item");
 
-faqItems.forEach(item => {
+if (faqItems.length > 0) {
 
-    const question = item.querySelector(".faq-question");
+    faqItems.forEach(item => {
 
-    question.addEventListener("click", () => {
+        const question = item.querySelector(".faq-question");
 
-        faqItems.forEach(other => {
+        if (!question) return;
 
-            if (other !== item) {
+        question.addEventListener("click", () => {
 
-                other.classList.remove("active");
+            faqItems.forEach(other => {
 
-            }
+                if (other !== item) {
+                    other.classList.remove("active");
+                }
+
+            });
+
+            item.classList.toggle("active");
 
         });
 
-        item.classList.toggle("active");
-
     });
 
-});
+}
 
 /*=========================================
 CLICK OUTSIDE FAQ

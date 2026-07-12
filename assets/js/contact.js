@@ -110,7 +110,7 @@ if (contactForm) {
         }
         return response.json();
     })
-    .then(data => {
+    .then(async data => {
         // 3. Execution Only Happens on Verified Network Success
         if (typeof addNotification === "function") {
 
