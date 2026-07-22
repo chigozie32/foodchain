@@ -2554,3 +2554,73 @@ MOBILE
     margin: 0;
   }
 }
+
+/*==========================================
+LEGAL PAGES
+==========================================*/
+
+.legal-page {
+  padding: 120px 20px 70px;
+
+  background: #fff;
+}
+
+.legal-page .container {
+  max-width: 900px;
+
+  margin: auto;
+}
+
+.legal-page h1 {
+  font-size: 40px;
+
+  color: #0b8f4d;
+
+  margin-bottom: 20px;
+}
+
+.legal-page h2 {
+  margin-top: 35px;
+
+  color: #222;
+
+  font-size: 24px;
+}
+
+.legal-page p,
+.legal-page li {
+  font-size: 17px;
+
+  color: #555;
+
+  line-height: 1.8;
+}
+
+.legal-page ul,
+.legal-page ol {
+  padding-left: 20px;
+}
+
+.legal-page a {
+  color: #0b8f4d;
+
+  text-decoration: none;
+}
+
+.legal-page a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 100px 15px 60px;
+  }
+
+  .legal-page h1 {
+    font-size: 30px;
+  }
+
+  .legal-page h2 {
+    font-size: 22px;
+  }
+}
