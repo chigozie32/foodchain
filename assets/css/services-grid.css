@@ -1,0 +1,153 @@
+/*==================================================
+QUICK SERVICES GRID
+Bold, detailed "what we offer" cards shown right
+under the hero: one per vertical (Food, Groceries,
+Pharmacy, Standalone Delivery), each with its own
+description and call-to-action.
+==================================================*/
+
+.quick-services {
+  padding: 70px 0;
+  background: var(--section, #f8fafc);
+}
+
+.quick-services-subtitle {
+  color: var(--text-light, #666);
+  font-size: 1.05rem;
+  margin-top: 8px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 42px;
+}
+
+@media (max-width: 768px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 22px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.service-detail-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.service-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.service-detail-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: var(--text, #222);
+}
+
+.service-detail-card p {
+  margin: 0 0 24px 0;
+  color: var(--text-light, #666);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.service-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.service-detail-actions .btn {
+  padding: 13px 24px;
+  font-size: 0.92rem;
+}
+
+/* Extra button variants used only inside these light cards */
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  font-weight: 700;
+  border: 2px solid var(--secondary, #003820);
+  color: var(--secondary, #003820);
+  background: transparent;
+  transition: var(--transition);
+}
+
+.btn-outline-dark:hover {
+  background: var(--secondary, #003820);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 50px;
+  font-weight: 700;
+  background: #25d366;
+  color: #fff;
+  transition: var(--transition);
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5a;
+  transform: translateY(-3px);
+}
+
+/* Per-service brand colors, matching the app */
+
+.service-food .service-icon {
+  background: #ffe3cc;
+  color: #dc5e07;
+}
+
+.service-grocery .service-icon {
+  background: #d9f2df;
+  color: #1f9d55;
+}
+
+.service-pharmacy .service-icon {
+  background: #d4f2ef;
+  color: #0f9b8e;
+}
+
+.service-rider .service-icon {
+  background: #e7e0fb;
+  color: #6c4fd1;
+}

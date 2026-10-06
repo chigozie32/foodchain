@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Contact Messages | FoodChain Admin
+
+    </title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet" href="css/messages.css">
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link rel="stylesheet" href="css/components.css">
+
+    <link rel="icon" href="assets/images/logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <img src="../assets/images/logo.png" alt="FoodChain">
+
+                <h2>FoodChain</h2>
+
+            </div>
+
+            <ul class="sidebar-menu">
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="fas fa-chart-line"></i>
+
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="restaurants.html">
+
+                        <i class="fas fa-store"></i>
+
+                        <span>Restaurants</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="partnerships.html">
+
+                        <i class="fas fa-handshake"></i>
+
+                        <span>Partnership Requests</span>
+
+                    </a>
+
+                </li>
+
+                <li class="active">
+
+                    <a href="messages.html">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <span>Contact Messages</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="newsletter.html">
+
+                        <i class="fas fa-newspaper"></i>
+
+                        <span>Newsletter</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="blog.html">
+
+                        <i class="fas fa-blog"></i>
+
+                        <span>Blog</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="settings.html">
+
+                        <i class="fas fa-cog"></i>
+
+                        <span>Settings</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle">
+
+                        <i class="fas fa-bars"></i>
+
+                    </button>
+
+                    <h1>Message</h1>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="notification">
+
+                        <i class="fas fa-bell" id="notificationBell"></i>
+
+                        <span class="notification-count" id="notificationCount">0</span>
+
+                        <div class="notification-dropdown" id="notificationDropdown">
+
+                            <h3>Notifications</h3>
+
+                            <div class="notification-actions">
+                                <button id="markAllReadBtn">
+                                    ✓ Mark All as Read
+                                </button>
+                            </div>
+
+                            <div class="notification-actions">
+
+                                <button id="showAllBtn">All</button>
+
+                                <button id="showUnreadBtn">Unread</button>
+
+                            </div>
+
+                            <ul id="notificationList"></ul>
+
+                            <ul id="notificationList">
+                            </ul>
+
+                            <button id="viewAllNotifications">
+
+                                View All
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <img src="../assets/images/logo.png" alt="Admin">
+
+                </div>
+
+            </header>
+
+            <!-- Mobile Overlay -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+            <!-- Page Intro -->
+
+            <section class="page-intro">
+
+                <h2>
+
+                    Customer Messages
+
+                </h2>
+
+                <p>
+
+                    Read, search and manage messages submitted from the FoodChain Contact page.
+
+                </p>
+
+            </section>
+
+            <!-- Search -->
+
+            <div class="search-container">
+
+                <input type="text" id="searchMessage" placeholder="Search by name or email...">
+
+            </div>
+
+            <!-- Bulk Action Bar -->
+
+            <div class="bulk-action-bar" id="bulkActionBar">
+
+                <span><strong id="bulkSelectedCount">0</strong> selected</span>
+
+                <div class="bulk-action-buttons">
+
+                    <button class="btn-bulk btn-bulk-reply" onclick="openBulkReplyModal()">
+                        <i class="fas fa-reply"></i> Reply
+                    </button>
+
+                    <button class="btn-bulk btn-bulk-status" onclick="bulkMarkResponded()">
+                        <i class="fas fa-check"></i> Mark Responded
+                    </button>
+
+                    <button class="btn-bulk btn-bulk-delete" onclick="bulkDeleteMessages()">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Messages Table -->
+
+            <section class="restaurant-list">
+
+                <div class="list-header">
+
+                    <h2>
+
+                        Inbox
+
+                    </h2>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th><input type="checkbox" id="selectAllMessages"></th>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>Subject</th>
+
+                                <th>Date</th>
+
+                                <th>Status</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="messagesTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- View Message Modal -->
+
+    <div class="modal-overlay" id="viewMessageModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <h3>Message Details</h3>
+                <button class="modal-close" onclick="closeViewMessageModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <p><strong>Name:</strong> <span id="viewMsgName"></span></p>
+                <p><strong>Email:</strong> <span id="viewMsgEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="viewMsgPhone"></span></p>
+                <p><strong>Subject:</strong> <span id="viewMsgSubject"></span></p>
+                <p><strong>Message:</strong></p>
+                <p class="modal-message-body" id="viewMsgBody"></p>
+
+                <div id="viewMsgReplySection" class="modal-reply-section">
+                    <p><strong>Your Reply:</strong></p>
+                    <p class="modal-message-body" id="viewMsgReply"></p>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeViewMessageModal()">Close</button>
+                <button class="btn-primary" onclick="closeViewMessageModal(); openReplyModal(currentViewedMessageId)">Reply</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Reply Modal -->
+
+    <div class="modal-overlay" id="replyModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <h3 id="replyModalTitle">Reply</h3>
+                <button class="modal-close" onclick="closeReplyModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <p class="modal-subtitle" id="replyModalSubtitle"></p>
+
+                <textarea id="replyText" rows="6" placeholder="Type your reply here. This will be emailed to the sender."></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeReplyModal()">Cancel</button>
+                <button class="btn-primary" id="sendReplyBtn" onclick="sendReply()">Send Reply</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/auth-fetch.js"></script>
+    <script src="js/ui-feedback.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/messages.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /backend_copy/
+
+Sitemap: https://foodchain.com.ng/sitemap.xml
+Sitemap: https://foodchain-api.onrender.com/sitemap-dynamic.xml
