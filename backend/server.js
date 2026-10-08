@@ -1553,10 +1553,13 @@ app.post("/admin/forgot-password", async (req, res) => {
         const panelUrl = process.env.ADMIN_PANEL_URL || "";
         const resetUrl = `${panelUrl}/reset-password.html?token=${rawToken}&email=${encodeURIComponent(email)}`;
 
-        const emailContent = templates.passwordReset(resetUrl);
-        await sendMail({ to: admin.email, ...emailContent });
-
+        // Respond right away — don't make the browser sit waiting on
+        // a slow/stuck SMTP connection. The email sends in the
+        // background; any failure is still logged on the server.
         res.json(genericResponse);
+
+        const emailContent = templates.passwordReset(resetUrl);
+        sendMail({ to: admin.email, ...emailContent });
 
     } catch (error) {
 
@@ -1733,6 +1736,7 @@ app.put("/admin/profile", verifyAdminToken, async (req, res) => {
     }
 
 });
+
 
 /*==========================================
 CHANGE PASSWORD

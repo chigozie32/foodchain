@@ -51,7 +51,13 @@ function getTransporter() {
         auth: {
             user: SMTP_USER,
             pass: SMTP_PASS
-        }
+        },
+
+        // Without these, a blocked/slow SMTP connection hangs the
+        // request indefinitely instead of failing with a clear error.
+        connectionTimeout: 10000, // 10s to establish the connection
+        greetingTimeout: 10000,   // 10s to receive the server's greeting
+        socketTimeout: 15000      // 15s of socket inactivity before giving up
 
     });
 
@@ -130,7 +136,12 @@ async function sendMail({ to, subject, title, bodyHtml, replyTo }) {
 
     } catch (error) {
 
-        console.error("✉️  Email send failed:", error.message);
+        console.error(
+            "✉️  Email send failed:",
+            error.message,
+            "| code:", error.code || "n/a",
+            "| command:", error.command || "n/a"
+        );
 
         return { sent: false, reason: error.message };
 
