@@ -57,21 +57,23 @@ const adminSchema = new mongoose.Schema({
 });
 
 // Hash the password automatically whenever it's set/changed.
-adminSchema.pre("save", async function (next) {
+// Written as a plain async function with no next() callback —
+// modern Mongoose runs pre-save hooks by awaiting the function's
+// own promise, and some installed versions no longer pass a
+// working next() callback at all, which was crashing every save.
+adminSchema.pre("save", async function () {
 
-    if (!this.isModified("password")) return next();
+    if (!this.isModified("password")) return;
 
     // Avoid re-hashing an already-hashed password (bcrypt hashes are 60 chars, start with $2)
     if (this.password && this.password.startsWith("$2") && this.password.length === 60) {
-        return next();
+        return;
     }
 
-    if (!this.password) return next();
+    if (!this.password) return;
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-
-    next();
 
 });
 
