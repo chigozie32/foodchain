@@ -115,6 +115,10 @@ if (notificationBell && notificationDropdown) {
         e.stopPropagation();
         notificationDropdown.classList.toggle("active");
 
+        if (notificationDropdown.classList.contains("active")) {
+            loadNotifications();
+        }
+
     });
 
     document.addEventListener("click", function () {

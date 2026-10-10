@@ -332,46 +332,67 @@ async function sendReply(){
     const sendBtn = document.getElementById("sendReplyBtn");
     if(sendBtn){
         sendBtn.disabled = true;
-        sendBtn.textContent = "Sending...";
+        sendBtn.textContent = "Opening email app...";
     }
 
     try{
 
-        let response, data;
+        let targetIds, recipientEmails;
 
         if(replyTargetIds && replyTargetIds.length){
 
-            response = await fetch(`${PARTNERSHIP_API}/bulk-reply`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ids: replyTargetIds, replyMessage })
-            });
+            targetIds = replyTargetIds;
 
-            data = await response.json();
-
-            selectedPartnershipIds.clear();
+            recipientEmails = partnershipRequests
+                .filter(p => targetIds.includes(p._id))
+                .map(p => p.email);
 
         } else if (replyTargetId) {
 
-            response = await fetch(`${PARTNERSHIP_API}/${replyTargetId}/reply`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ replyMessage })
-            });
+            targetIds = [replyTargetId];
 
-            data = await response.json();
+            const req = partnershipRequests.find(p => p._id === replyTargetId);
+            recipientEmails = req ? [req.email] : [];
+
+        } else {
+
+            showToast("No recipient selected.");
+            return;
 
         }
 
-        showToast(data.message || "Reply sent.");
+        if(!recipientEmails.length){
+            showToast("Could not find an email address for the selected request(s).");
+            return;
+        }
 
+        // Open the admin's own default email app with everything pre-filled.
+        const subject = encodeURIComponent("Reply from FoodChain");
+        const body = encodeURIComponent(replyMessage);
+        const to = recipientEmails.join(",");
+
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+        // Record that these were responded to (no email-sending involved —
+        // just a status update, so this can't fail the way SMTP can).
+        const response = await fetch(`${PARTNERSHIP_API}/bulk-status`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ids: targetIds, status: "Responded" })
+        });
+
+        const data = await response.json();
+
+        showToast(data.message || "Marked as responded.");
+
+        selectedPartnershipIds.clear();
         closeReplyModal();
         await loadPartnershipRequests();
 
     }catch(error){
 
         console.error(error);
-        showToast("Could not send reply.");
+        showToast("Could not update request status.");
 
     }finally{
 

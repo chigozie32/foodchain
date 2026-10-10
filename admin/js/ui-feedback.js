@@ -86,7 +86,7 @@ auth-fetch.js). Exposes two globals:
         void toast.offsetWidth;
         toast.classList.add("fc-toast-in");
 
-        const DURATION = 4500;
+        const DURATION = 7000;
         let dismissTimer = setTimeout(() => dismissToast(toast), DURATION);
 
         toast.querySelector(".fc-toast-close").addEventListener("click", () => {

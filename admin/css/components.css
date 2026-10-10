@@ -23,7 +23,9 @@ tr.row-selected {
 /* ---------- Status badges (override generic .status-badge colors) ---------- */
 
 .status-badge {
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .status-unread {
@@ -68,7 +70,9 @@ tr.row-selected {
 
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .bulk-action-bar.active {
@@ -91,7 +95,10 @@ tr.row-selected {
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -106,17 +113,34 @@ tr.row-selected {
   transform: translateY(0);
 }
 
-.btn-bulk-reply { background: #0d6efd; }
-.btn-bulk-reply:hover { background: #0b5ed7; }
+.btn-bulk-reply {
+  background: #0d6efd;
+}
+.btn-bulk-reply:hover {
+  background: #0b5ed7;
+}
 
-.btn-bulk-status { background: #198754; }
-.btn-bulk-status:hover { background: #157347; }
+.btn-bulk-status {
+  background: #198754;
+}
+.btn-bulk-status:hover {
+  background: #157347;
+}
 
-.btn-bulk-reject { background: #f0ad00; color: #1f2a24; }
-.btn-bulk-reject:hover { background: #d99b00; }
+.btn-bulk-reject {
+  background: #f0ad00;
+  color: #1f2a24;
+}
+.btn-bulk-reject:hover {
+  background: #d99b00;
+}
 
-.btn-bulk-delete { background: #dc3545; }
-.btn-bulk-delete:hover { background: #bb2d3b; }
+.btn-bulk-delete {
+  background: #dc3545;
+}
+.btn-bulk-delete:hover {
+  background: #bb2d3b;
+}
 
 /* ---------- Modals ---------- */
 
@@ -150,7 +174,9 @@ tr.row-selected {
 
   transform: translateY(30px) scale(0.97);
   opacity: 0;
-  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
 }
 
 .modal-overlay.active .modal-box {
@@ -180,7 +206,10 @@ tr.row-selected {
   cursor: pointer;
   padding: 6px;
   border-radius: 50%;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .modal-close:hover {
@@ -230,7 +259,9 @@ tr.row-selected {
   font-family: inherit;
   resize: vertical;
   min-height: 120px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .modal-body textarea:focus {
@@ -255,7 +286,10 @@ tr.row-selected {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn-primary {
@@ -304,7 +338,10 @@ tr.row-selected {
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .action-buttons button:hover {
@@ -315,7 +352,6 @@ tr.row-selected {
 /* ---------- Mobile ---------- */
 
 @media (max-width: 600px) {
-
   .bulk-action-bar {
     flex-direction: column;
     align-items: flex-start;
@@ -324,7 +360,6 @@ tr.row-selected {
   .modal-box {
     max-width: 100%;
   }
-
 }
 
 /*==================================================
@@ -368,8 +403,9 @@ CUSTOM TOAST NOTIFICATIONS
 
   opacity: 0;
   transform: translateX(30px) scale(0.98);
-  transition: opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition:
+    opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .fc-toast-in {
@@ -382,18 +418,30 @@ CUSTOM TOAST NOTIFICATIONS
   transform: translateX(30px) scale(0.98);
 }
 
-.fc-toast-success { border-left-color: #198754; }
-.fc-toast-error { border-left-color: #dc3545; }
-.fc-toast-info { border-left-color: #0d6efd; }
+.fc-toast-success {
+  border-left-color: #198754;
+}
+.fc-toast-error {
+  border-left-color: #dc3545;
+}
+.fc-toast-info {
+  border-left-color: #0d6efd;
+}
 
 .fc-toast-icon {
   font-size: 1.1rem;
   margin-top: 2px;
 }
 
-.fc-toast-success .fc-toast-icon { color: #198754; }
-.fc-toast-error .fc-toast-icon { color: #dc3545; }
-.fc-toast-info .fc-toast-icon { color: #0d6efd; }
+.fc-toast-success .fc-toast-icon {
+  color: #198754;
+}
+.fc-toast-error .fc-toast-icon {
+  color: #dc3545;
+}
+.fc-toast-info .fc-toast-icon {
+  color: #0d6efd;
+}
 
 .fc-toast-message {
   font-size: 0.93rem;
@@ -411,7 +459,9 @@ CUSTOM TOAST NOTIFICATIONS
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .fc-toast-close:hover {
@@ -431,13 +481,23 @@ CUSTOM TOAST NOTIFICATIONS
   animation: fcToastShrink 4.5s linear forwards;
 }
 
-.fc-toast-success .fc-toast-progress { color: #198754; }
-.fc-toast-error .fc-toast-progress { color: #dc3545; }
-.fc-toast-info .fc-toast-progress { color: #0d6efd; }
+.fc-toast-success .fc-toast-progress {
+  color: #198754;
+}
+.fc-toast-error .fc-toast-progress {
+  color: #dc3545;
+}
+.fc-toast-info .fc-toast-progress {
+  color: #0d6efd;
+}
 
 @keyframes fcToastShrink {
-  from { transform: scaleX(1); }
-  to { transform: scaleX(0); }
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
 }
 
 /* Danger variant for confirm dialogs (delete actions) */
@@ -469,18 +529,24 @@ in flight (see js/auth-fetch.js).
   z-index: 30000;
   opacity: 0;
   box-shadow: 0 0 8px rgba(220, 94, 7, 0.6);
-  transition: width 0.3s ease, opacity 0.2s ease;
+  transition:
+    width 0.3s ease,
+    opacity 0.2s ease;
 }
 
 .fc-loading-bar-active {
   opacity: 1;
   width: 80%;
-  transition: width 4s cubic-bezier(0.1, 0.7, 0.3, 1), opacity 0.2s ease;
+  transition:
+    width 4s cubic-bezier(0.1, 0.7, 0.3, 1),
+    opacity 0.2s ease;
 }
 
 .fc-loading-bar-done {
   width: 100%;
-  transition: width 0.25s ease, opacity 0.2s ease 0.25s;
+  transition:
+    width 0.25s ease,
+    opacity 0.2s ease 0.25s;
   opacity: 0;
 }
 
@@ -518,7 +584,53 @@ DASHBOARD STAT CARDS — "ONE BY ONE" ENTRANCE
   animation: fcStaggerFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.stats .stat-card:nth-child(1) { animation-delay: 0.05s; }
-.stats .stat-card:nth-child(2) { animation-delay: 0.15s; }
-.stats .stat-card:nth-child(3) { animation-delay: 0.25s; }
-.stats .stat-card:nth-child(4) { animation-delay: 0.35s; }
+.stats .stat-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.stats .stat-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.stats .stat-card:nth-child(3) {
+  animation-delay: 0.25s;
+}
+.stats .stat-card:nth-child(4) {
+  animation-delay: 0.35s;
+}
+
+/*==================================================
+PASSWORD SHOW/HIDE TOGGLE
+Used by js/password-toggle.js — works on any
+password field regardless of which page's
+input styling it sits inside.
+==================================================*/
+
+.pw-toggle-wrap {
+  position: relative;
+}
+
+.pw-toggle-input {
+  padding-right: 46px !important;
+}
+
+.pw-toggle-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #888;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: color 0.2s ease;
+}
+
+.pw-toggle-btn:hover {
+  color: #dc5e07;
+}
